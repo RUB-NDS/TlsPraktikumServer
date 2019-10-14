@@ -1,0 +1,45 @@
+image: maven:3.5.4-jdk-8-alpine
+
+compilation:
+  stage: build
+  tags: 
+    - tls
+  script:
+    - echo "Der Server wird gebaut"
+    - mvn clean package -DskipTests=true
+
+aufgabe0:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - mvn test -P aufgabe0
+
+aufgabe1:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - if [ `date +%y%m%d` -gt 191023 ]; then mvn test -P aufgabe1; fi 
+    
+aufgabe2:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - if [ `date +%y%m%d` -gt 191030 ]; then mvn test -P aufgabe2; fi 
+
+aufgabe3:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - if [ `date +%y%m%d` -gt 191127 ]; then mvn test -P aufgabe3; fi 
+
+aufgabe4:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - if [ `date +%y%m%d` -gt 191219 ]; then mvn test -P aufgabe4; fi 
+
