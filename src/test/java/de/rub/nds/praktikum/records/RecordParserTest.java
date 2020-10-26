@@ -17,7 +17,7 @@ public class RecordParserTest {
         RecordParser parser = new RecordParser(Util.hexStringToByteArray("050303000401020304"));
         Record parse = parser.parse();
         assertEquals(5, parse.getType());
-        assertArrayEquals(new byte[]{0x03, 0x03}, parse.getVersion());
-        assertArrayEquals(Util.hexStringToByteArray("01020304"), parse.getData());
+        assertArrayEquals("Version is not 0303",new byte[]{0x03, 0x03}, parse.getVersion());
+        assertArrayEquals("Record data is incorrect",Util.hexStringToByteArray("01020304"), parse.getData());
     }
 }

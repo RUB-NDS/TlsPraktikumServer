@@ -1,6 +1,11 @@
 package de.rub.nds.praktikum.messages.extensions;
 
+import de.rub.nds.praktikum.constants.FieldLength;
+import de.rub.nds.praktikum.constants.NamedGroup;
+import de.rub.nds.praktikum.exception.ParserException;
 import de.rub.nds.praktikum.messages.Parser;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A parser for the supported groups extension

@@ -11,7 +11,7 @@ import de.rub.nds.praktikum.messages.Parser;
 public class RecordParser extends Parser<Record> {
 
     /**
-     * Cosntructor
+     * Constructor
      *
      * @param array The byte[] that should be parsed
      */

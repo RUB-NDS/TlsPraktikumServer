@@ -18,8 +18,8 @@ public class RecordSerializerTest {
     public void testSerializeBytes() {
         Record record = new Record((byte) 3, new byte[]{0x03, 0x03}, new byte[]{01, 02, 03, 04});
         RecordSerializer serializer = new RecordSerializer(record);
-        byte[] serializeBytes = serializer.serializeBytes();
-        assertArrayEquals(serializeBytes, Util.hexStringToByteArray("030303000401020304"));
+        byte[] serializeBytes = serializer.serialize();
+        assertArrayEquals("Record serialize failed",serializeBytes, Util.hexStringToByteArray("030303000401020304"));
     }
 
 }

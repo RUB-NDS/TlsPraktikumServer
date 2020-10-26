@@ -3,7 +3,7 @@ package de.rub.nds.praktikum.messages.extensions;
 import de.rub.nds.praktikum.messages.Serializer;
 
 /**
- * A serializer class which transfroms a supported versions into its byte
+ * A serializer class which transforms a supported versions into its byte
  * representation
  *
  */
@@ -21,7 +21,7 @@ public class SupportedVersionsExtensionSerializer extends Serializer<SupportedVe
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

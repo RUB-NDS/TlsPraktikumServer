@@ -15,7 +15,7 @@ public class EncryptedExtensionsSerializerTest {
     public void testSerializeBytes() {
         EncryptedExtensions message = new EncryptedExtensions();
         EncryptedExtensionsSerializer serializer = new EncryptedExtensionsSerializer(message);
-        assertArrayEquals(Util.hexStringToByteArray("0000"), serializer.serialize());
+        assertArrayEquals("Empty EncryptedExtensions contains only two zero bytes",Util.hexStringToByteArray("0000"), serializer.serialize());
     }
 
 }

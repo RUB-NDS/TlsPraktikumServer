@@ -24,9 +24,9 @@ public class CertificateEntry {
     }
 
     /**
-     * Returns the certficite of this entry
+     * Returns the certificate of this entry
      *
-     * @return the certficite of this entry
+     * @return the certificate of this entry
      */
     public Certificate getCertificate() {
         return certificate;

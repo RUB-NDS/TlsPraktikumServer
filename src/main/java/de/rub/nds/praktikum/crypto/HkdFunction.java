@@ -61,7 +61,7 @@ public class HkdFunction {
      *
      * @param salt The Salt
      * @param ikm The IKM
-     * @return The HKDF-Extracted ouput
+     * @return The HKDF-Extracted output
      */
     public static byte[] extract(byte[] salt, byte[] ikm) {
         throw new UnsupportedOperationException("Add code here");
@@ -95,8 +95,7 @@ public class HkdFunction {
      * @return the derived secret
      */
     public static byte[] deriveSecret(byte[] prk, String labelIn,
-            byte[] toHash) {
-        throw new UnsupportedOperationException("Add code here");
+            throw new UnsupportedOperationException("Add code here");
     }
 
     /**

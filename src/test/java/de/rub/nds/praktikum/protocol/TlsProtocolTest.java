@@ -91,7 +91,7 @@ public class TlsProtocolTest {
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
         protocol.getContext().setTlsState(TlsState.START);
         protocol.stepConnectionState();
-        assertEquals(TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
     }
 
     @Test
@@ -110,8 +110,23 @@ public class TlsProtocolTest {
         suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
         protocol.getContext().setClientCipherSuiteList(suiteList);
         protocol.stepConnectionState();
-        assertEquals(TlsState.AWAIT_RETRY_HELLO_RESPONSE, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.AWAIT_RETRY_HELLO_RESPONSE, protocol.getContext().getTlsState());
     }
+
+    @Test
+    @Category(de.rub.nds.praktikum.Aufgabe2.class)
+    public void testStepStatemachineWait_AwaitToRecievedClientHello() throws Exception {
+        socket = mock(Socket.class);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Util.hexStringToByteArray("160301013c010001380303afe00859b6a927b382420cb225e5d23097f14e09c801c43eadce55d9d34d6552200e94608a60749bf7d2aa16be7b64db938ab697ee7c5ec6ddc8ae5de2c89a5ed0003e130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff010000b10000000e000c0000096c6f63616c686f7374000b000403000102000a00160014001d0017001e0019001801000101010201030104002300000016000000170000000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602002b0009080304030303020301002d00020101003300260024001d0020a87d9ff9e5c5ea38f3f11ce3663fe80023f6977bc44b5a8eb561161b5f3eaa22"));
+        when(socket.getInputStream()).thenReturn(byteArrayInputStream);
+        when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+        protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
+        protocol.getContext().setTlsState(TlsState.AWAIT_RETRY_HELLO_RESPONSE);
+        protocol.stepConnectionState();
+        assertEquals("TlsState is invalid", TlsState.RECVD_CH, protocol.getContext().getTlsState());
+    }
+
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
@@ -121,7 +136,7 @@ public class TlsProtocolTest {
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
         protocol.getContext().setTlsState(TlsState.START);
         protocol.stepConnectionState();
-        assertEquals(TlsState.RECVD_CH, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.RECVD_CH, protocol.getContext().getTlsState());
     }
 
     @Test
@@ -138,7 +153,7 @@ public class TlsProtocolTest {
         suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
         protocol.getContext().setClientCipherSuiteList(suiteList);
         protocol.stepConnectionState();
-        assertEquals(TlsState.NEGOTIATED, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.NEGOTIATED, protocol.getContext().getTlsState());
     }
 
     @Test
@@ -163,7 +178,7 @@ public class TlsProtocolTest {
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
         protocol.getContext().setTlsState(TlsState.CONNECTED);
         protocol.sendData(new byte[]{(byte) 0xFF});
-        assertArrayEquals(Util.hexStringToByteArray("1703030001FF"), outputStream.toByteArray());
+        assertArrayEquals("The records is wrong", Util.hexStringToByteArray("1703030001FF"), outputStream.toByteArray());
     }
 
     @Test
@@ -174,7 +189,7 @@ public class TlsProtocolTest {
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
         protocol.getContext().setTlsState(TlsState.CONNECTED);
         byte[] receivedData = protocol.receiveData();
-        assertArrayEquals(Util.hexStringToByteArray("FF"), receivedData);
+        assertArrayEquals("Record data is invalid", Util.hexStringToByteArray("FF"), receivedData);
     }
 
     @Test(expected = TlsException.class)
@@ -216,7 +231,7 @@ public class TlsProtocolTest {
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
         protocol.getContext().setTlsState(TlsState.START);
         protocol.stepConnectionState();
-        assertEquals(TlsState.RECVD_CH, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.RECVD_CH, protocol.getContext().getTlsState());
     }
 
     @Test
@@ -234,16 +249,16 @@ public class TlsProtocolTest {
         protocol.getContext().setKeyShareEntryList(Arrays.asList(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), new byte[32])));
         protocol.stepConnectionState();
         //Make sure to reset the SQN's in the record layer here
-        assertEquals(TlsState.NEGOTIATED, protocol.getContext().getTlsState());
-        assertNotNull(protocol.getContext().getClientWriteIv());
-        assertNotNull(protocol.getContext().getClientWriteKey());
-        assertNotNull(protocol.getContext().getEphemeralPrivateKey());
-        assertNotNull(protocol.getContext().getEphemeralPublicKey());
-        assertNotNull(protocol.getContext().getHandshakeSecret());
-        assertNotNull(protocol.getContext().getSelectedVersion());
-        assertNotNull(protocol.getContext().getClientHandshakeTrafficSecret());
-        assertNotNull(protocol.getContext().getServerHandshakeTrafficSecret());
-        assertNotNull(protocol.getContext().getSharedEcdheSecret());
+        assertEquals("TlsState is invalid", TlsState.NEGOTIATED, protocol.getContext().getTlsState());
+        assertNotNull("ClientWriteIv must be set", protocol.getContext().getClientWriteIv());
+        assertNotNull("ClientWriteKey must be set", protocol.getContext().getClientWriteKey());
+        assertNotNull("EphemeralPrivateKey must be set", protocol.getContext().getEphemeralPrivateKey());
+        assertNotNull("EphemeralPublicKey must be set", protocol.getContext().getEphemeralPublicKey());
+        assertNotNull("HandshakeSecret must be set", protocol.getContext().getHandshakeSecret());
+        assertNotNull("SelectedVersion must be set", protocol.getContext().getSelectedVersion());
+        assertNotNull("ClientHandshakeTrafficSecret must be set", protocol.getContext().getClientHandshakeTrafficSecret());
+        assertNotNull("ServerHandshakeTrafficSecret must be set", protocol.getContext().getServerHandshakeTrafficSecret());
+        assertNotNull("EcdheSecret must be set", protocol.getContext().getSharedEcdheSecret());
     }
 
     @Test
@@ -257,8 +272,8 @@ public class TlsProtocolTest {
         protocol.getContext().setSelectedSignatureAndHashAlgorithm(SignatureAndHashAlgorithm.ECDSA_SHA1);
         protocol.stepConnectionState();
         //Make sure to reset the SQN's in the record layer here
-        assertEquals(TlsState.WAIT_FINISHED, protocol.getContext().getTlsState());
-        assertNotNull(protocol.getContext().getMasterSecret());
+        assertEquals("TlsState is invalid", TlsState.WAIT_FINISHED, protocol.getContext().getTlsState());
+        assertNotNull("MasterSecret must be set", protocol.getContext().getMasterSecret());
     }
 
     @Test
@@ -277,7 +292,25 @@ public class TlsProtocolTest {
         protocol.getContext().setClientFinishedKey(new byte[32]);
         protocol.stepConnectionState();
         //Make sure to reset the SQN's in the record layer here
-        assertEquals(TlsState.CONNECTED, protocol.getContext().getTlsState());
+        assertEquals("TlsState is invalid", TlsState.CONNECTED, protocol.getContext().getTlsState());
+    }
+    
+        /**
+     * Test if PassDataToLayer filters messages to the expected Layer
+     */
+    @Test
+    @Category(de.rub.nds.praktikum.Aufgabe4.class)
+    public void testParseChangeChipherSpecAndClientFinisedInOneStream() throws IOException {
+        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Util.hexStringToByteArray("140303000101160303002414000020af7220c93e5c02736bfc91499f00b1e2c939dda1e12f88e43e898489c94db4a5"));
+        when(socket.getInputStream()).thenReturn(byteArrayInputStream);
+        protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
+        protocol.getContext().setTlsState(TlsState.WAIT_FINISHED);
+        protocol.getContext().setSelectedCiphersuite(CipherSuite.TLS_AES_128_GCM_SHA256);
+        protocol.getContext().setHandshakeSecret(new byte[32]);
+        protocol.getContext().setServerApplicationTrafficSecret(new byte[32]);
+        protocol.getContext().setClientApplicationTrafficSecret(new byte[32]);
+        protocol.getContext().setClientFinishedKey(new byte[32]);
+        protocol.stepConnectionState();
     }
 
     /**
@@ -298,7 +331,7 @@ public class TlsProtocolTest {
         TlsProtocol protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, null, 10);
         protocol.getContext().setTlsState(TlsState.START);
         protocol.stepConnectionState();
-        assertEquals(TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
-        assertArrayEquals(expectedTranscript, protocol.getContext().getDigest());
-    }
+        assertEquals("TlsState is invalid", TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
+        assertArrayEquals("Digest is invalid", expectedTranscript, protocol.getContext().getDigest());
+    }            
 }

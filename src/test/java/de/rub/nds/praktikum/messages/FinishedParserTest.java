@@ -16,7 +16,7 @@ public class FinishedParserTest {
     public void testParse() {
         FinishedParser parser = new FinishedParser(Util.hexStringToByteArray("FFEEDDCCBBAA9988776655443322110000112233445566778899AABBCCDDEEFF"));
         Finished parsedFinished = parser.parse();
-        assertArrayEquals(Util.hexStringToByteArray("FFEEDDCCBBAA9988776655443322110000112233445566778899AABBCCDDEEFF"), parsedFinished.getVerifyData());
+        assertArrayEquals("Finished is not VerifyData",Util.hexStringToByteArray("FFEEDDCCBBAA9988776655443322110000112233445566778899AABBCCDDEEFF"), parsedFinished.getVerifyData());
     }
 
     @Test(expected = ParserException.class)

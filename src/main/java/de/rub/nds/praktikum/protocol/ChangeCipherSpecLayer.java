@@ -29,7 +29,7 @@ public class ChangeCipherSpecLayer extends TlsSubProtocol {
     }
 
     /**
-     * Sends a dummy ChangeCipherSpec message, which only consits of the byte
+     * Sends a dummy ChangeCipherSpec message, which only consists of the byte
      * 0x01. There is no extra class for this.
      *
      * @throws IOException If something goes wrong during transmission

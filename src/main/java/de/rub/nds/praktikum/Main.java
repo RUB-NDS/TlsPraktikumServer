@@ -22,7 +22,7 @@ import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 
 /**
- * The main class of this programm. The execution starts here
+ * The main class of this program. The execution starts here
  */
 public class Main {
 

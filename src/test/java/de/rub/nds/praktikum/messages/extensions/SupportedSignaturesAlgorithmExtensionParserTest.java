@@ -23,25 +23,25 @@ public class SupportedSignaturesAlgorithmExtensionParserTest {
 
     @Test(expected = ParserException.class)
     public void testParseInvalidLength() {
-        SupportedGroupsExtensionParser parser = new SupportedGroupsExtensionParser(Util.hexStringToByteArray("0004001D"));
+        SupportedSignaturesAlgorithmExtensionParser parser = new SupportedSignaturesAlgorithmExtensionParser(Util.hexStringToByteArray("0004001D"));
         parser.parse();
     }
 
     @Test(expected = ParserException.class)
     public void testParseUnevenLength() {
-        SupportedGroupsExtensionParser parser = new SupportedGroupsExtensionParser(Util.hexStringToByteArray("0003001DAD"));
+        SupportedSignaturesAlgorithmExtensionParser parser = new SupportedSignaturesAlgorithmExtensionParser(Util.hexStringToByteArray("0003001DAD"));
         parser.parse();
     }
 
     @Test(expected = ParserException.class)
     public void testParseToLessLength() {
-        SupportedGroupsExtensionParser parser = new SupportedGroupsExtensionParser(Util.hexStringToByteArray("0000001DAD"));
+        SupportedSignaturesAlgorithmExtensionParser parser = new SupportedSignaturesAlgorithmExtensionParser(Util.hexStringToByteArray("0000001DAD"));
         parser.parse();
     }
 
     @Test(expected = ParserException.class)
     public void testParseWithGarbageDataLength() {
-        SupportedGroupsExtensionParser parser = new SupportedGroupsExtensionParser(Util.hexStringToByteArray("00021DADFFFF"));
+        SupportedSignaturesAlgorithmExtensionParser parser = new SupportedSignaturesAlgorithmExtensionParser(Util.hexStringToByteArray("00021DADFFFF"));
         parser.parse();
     }
 }
