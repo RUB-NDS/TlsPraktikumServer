@@ -54,7 +54,7 @@ public class Util {
      *
      * @param value value to convert
      * @param size size of the target byte[]
-     * @return the integer converte to a byte[size]
+     * @return the integer converted to a byte[size]
      */
     public static byte[] convertIntToBytes(int value, int size) {
         if (size < 1) {
@@ -95,7 +95,7 @@ public class Util {
     }
 
     /**
-     * Converts a long as a 64bit unsinged int into a byte[]
+     * Converts a long as a 64bit unsigned int into a byte[]
      *
      * @param l long to convert
      * @return byte[] representation
@@ -150,4 +150,8 @@ public class Util {
 
     private Util() {
     }
+    
+   public @interface Solution {
+       int skipLines() default 0;
+  }
 }

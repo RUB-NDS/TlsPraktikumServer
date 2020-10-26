@@ -39,7 +39,7 @@ public abstract class Serializer<T> {
      *
      * @return The already serialized Bytes
      */
-    protected abstract byte[] serializeBytes();
+    protected abstract void serializeBytes();
 
     /**
      * Adds a byte[] representation of an int to the final byte[]. If the
@@ -84,7 +84,7 @@ public abstract class Serializer<T> {
     /**
      * Returns a byte[] of all already serialized bytes
      *
-     * @return all already serailized bytes
+     * @return all already serialized bytes
      */
     protected byte[] getAlreadySerialized() {
         return outputStream.toByteArray();
@@ -97,6 +97,7 @@ public abstract class Serializer<T> {
      */
     public byte[] serialize() {
         outputStream = new ByteArrayOutputStream();
-        return serializeBytes();
+        serializeBytes();
+        return getAlreadySerialized();
     }
 }

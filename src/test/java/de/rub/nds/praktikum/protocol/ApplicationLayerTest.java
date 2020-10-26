@@ -35,18 +35,18 @@ public class ApplicationLayerTest {
     @Test
     public void testSendData() throws Exception {
         layer.sendData(Util.hexStringToByteArray("AABBCC"));
-        assertArrayEquals(outputStream.toByteArray(), Util.hexStringToByteArray("1703030003AABBCC"));
+        assertArrayEquals("Invalid data send",outputStream.toByteArray(), Util.hexStringToByteArray("1703030003AABBCC"));
     }
 
     @Test
     public void testProcessByteStream() {
         layer.processByteStream(Util.hexStringToByteArray("FFDDEE"));
-        assertArrayEquals(Util.hexStringToByteArray("FFDDEE"), layer.fetchAppData());
+        assertArrayEquals("Data should be copied to the buffer",Util.hexStringToByteArray("FFDDEE"), layer.fetchAppData());
     }
 
     @Test
     public void testReceiveData() {
         Record r = new Record(ProtocolType.APPLICATION_DATA.getByteValue(), new byte[]{3, 3}, Util.hexStringToByteArray("DDEEFF"));
-        assertArrayEquals(Util.hexStringToByteArray("DDEEFF"), layer.receiveData(r));
+        assertArrayEquals("We need the data of the record",Util.hexStringToByteArray("DDEEFF"), layer.receiveData(r));
     }
 }

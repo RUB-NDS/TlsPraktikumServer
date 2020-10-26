@@ -3,7 +3,7 @@ package de.rub.nds.praktikum.messages.extensions;
 import de.rub.nds.praktikum.messages.Serializer;
 
 /**
- * A serializer class which transfroms a KeyShareExtension into its byte
+ * A serializer class which transforms a KeyShareExtension into its byte
  * representation
  *
  */
@@ -21,7 +21,7 @@ public class KeyShareExtensionSerializer extends Serializer<KeyShareExtension> {
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

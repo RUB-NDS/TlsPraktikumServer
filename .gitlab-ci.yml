@@ -20,26 +20,26 @@ aufgabe1:
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 191023 ]; then mvn test -P aufgabe1; fi 
+    - if [ `date +%y%m%d` -gt 201103 ]; then mvn test -P aufgabe1; fi 
     
 aufgabe2:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 191030 ]; then mvn test -P aufgabe2; fi 
+    - if [ `date +%y%m%d` -gt 201110 ]; then mvn test -P aufgabe2; fi 
 
 aufgabe3:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 191127 ]; then mvn test -P aufgabe3; fi 
+    - if [ `date +%y%m%d` -gt 201201 ]; then mvn test -P aufgabe3; fi 
 
 aufgabe4:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 191219 ]; then mvn test -P aufgabe4; fi 
+    - if [ `date +%y%m%d` -gt 201222 ]; then mvn test -P aufgabe4; fi 
 

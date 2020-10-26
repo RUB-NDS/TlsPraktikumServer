@@ -3,7 +3,7 @@ package de.rub.nds.praktikum.messages;
 import de.rub.nds.praktikum.constants.FieldLength;
 
 /**
- * A serializer class which transfroms a certificate verify message object into
+ * A serializer class which transforms a certificate verify message object into
  * its byte representation
  *
  */
@@ -21,7 +21,7 @@ public class CertificateVerifySerializer extends Serializer<CertificateVerify> {
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

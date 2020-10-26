@@ -54,7 +54,7 @@ public class Alert {
     }
 
     /**
-     * Returns a String reprenstation of this object
+     * Returns a String representation of this object
      *
      * @return
      */

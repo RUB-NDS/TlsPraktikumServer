@@ -32,7 +32,7 @@ public enum ProtocolType {
      * Returns the byte value of this ProtocolType as seen in the TLS record
      * layer
      *
-     * @return the byte vlaue of the protocol type
+     * @return the byte value of the protocol type
      */
     public byte getByteValue() {
         return value;

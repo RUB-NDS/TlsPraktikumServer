@@ -16,7 +16,7 @@ public class AlertSerializerTest {
         Alert alert = new Alert((byte) 2, (byte) 20);
         AlertSerializer serializer = new AlertSerializer(alert);
         byte[] serializedAlert = serializer.serialize();
-        Assert.assertArrayEquals(Util.hexStringToByteArray("0214"), serializedAlert);
+        Assert.assertArrayEquals("Alert is not fatal BAD_RECORD_MAC",Util.hexStringToByteArray("0214"), serializedAlert);
     }
 
 }

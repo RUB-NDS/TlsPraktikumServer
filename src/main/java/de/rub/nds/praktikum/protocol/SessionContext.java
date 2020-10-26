@@ -97,8 +97,8 @@ public class SessionContext {
      * Constructor
      *
      * @param certificateChain the server certificateChain
-     * @param certificatePrivateKey the private certificatePrivateKey for the
-     * server certificateChain
+     * @param certificatePrivateKey the private key for the server certificateChain
+     * 
      */
     public SessionContext(Certificate certificateChain, PrivateKey certificatePrivateKey) {
         this.certificateChain = certificateChain;
@@ -146,7 +146,7 @@ public class SessionContext {
     }
 
     /**
-     * Updates the transcript digest with the provided date[]
+     * Updates the transcript digest with the provided data
      *
      * @param data the data with which to update the transcript
      */
@@ -278,7 +278,7 @@ public class SessionContext {
     }
 
     /**
-     * Returngs the client named group list
+     * Returns the client named group list
      *
      * @return the client named group list
      */
@@ -720,15 +720,17 @@ public class SessionContext {
     }
 
     /**
+     * Returns the selected SignatureAndHashAlgorithm
      *
-     * @return
+     * @return selectedSignatureAndHashAlgorithm the selected SignatureAndHashAlgorithm
      */
     public SignatureAndHashAlgorithm getSelectedSignatureAndHashAlgorithm() {
         return selectedSignatureAndHashAlgorithm;
     }
 
     /**
-     *
+     * Sets the selectedSignatureAndHashAlgorithm
+     * 
      * @param selectedSignatureAndHashAlgorithm
      */
     public void setSelectedSignatureAndHashAlgorithm(SignatureAndHashAlgorithm selectedSignatureAndHashAlgorithm) {

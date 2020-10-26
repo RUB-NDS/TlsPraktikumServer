@@ -1,17 +1,31 @@
 package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
+import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.records.Record;
+import de.rub.nds.praktikum.records.RecordParser;
+import de.rub.nds.praktikum.records.RecordSerializer;
+import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * The record layer is the lowest layer of tls protocol stack and is responsible
- * for the encapusaltion of the data from higher level protocols. Once the
+ * for the encapsulation of the data from higher level protocols. Once the
  * ServerHello message is sent records are encrypted under the current handshake
  * context
  *
@@ -60,8 +74,9 @@ public class RecordLayer {
     }
 
     /**
-     * Sends the provided data in record of the appropriate type. The record is
-     * encrypted under the current connection state
+     * Sends the provided data in record of the appropriate type.
+     * The record is encrypted under the current connection state.
+     * Encrypt the record if encryptionIsActive. Increase appropriate sequence numbers.
      *
      * @param data the plaintext data that should be sent
      * @param type the type of the protocol which wants to send this data
@@ -72,10 +87,11 @@ public class RecordLayer {
     }
 
     /**
-     * Tries to receive records from the input stream. If not data is available
+     * Tries to receive records from the input stream. If no data is available
      * an empty record list is returned.
+     * Decrypt the record if encryptionIsActive. Increase appropriate sequence numbers.
      *
-     * @return @throws IOException if an error occured while reading from the
+     * @return @throws IOException if an error occurred while reading from the
      * stream
      */
     public List<Record> receiveData() throws IOException {
@@ -129,7 +145,7 @@ public class RecordLayer {
     /**
      *
      */
-    public void resetSequencnumbers() {
+    public void resetSequencenumbers() {
         throw new UnsupportedOperationException("Add code here");
     }
 }

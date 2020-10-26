@@ -3,6 +3,10 @@ package de.rub.nds.praktikum.protocol;
 import de.rub.nds.praktikum.constants.AlertDescription;
 import de.rub.nds.praktikum.constants.AlertLevel;
 import de.rub.nds.praktikum.constants.ProtocolType;
+import de.rub.nds.praktikum.constants.TlsState;
+import de.rub.nds.praktikum.messages.Alert;
+import de.rub.nds.praktikum.messages.AlertParser;
+import de.rub.nds.praktikum.messages.AlertSerializer;
 import java.io.IOException;
 
 /**

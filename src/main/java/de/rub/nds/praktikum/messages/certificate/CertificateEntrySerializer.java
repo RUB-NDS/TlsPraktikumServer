@@ -1,6 +1,12 @@
 package de.rub.nds.praktikum.messages.certificate;
 
+import de.rub.nds.praktikum.constants.FieldLength;
+import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.messages.Serializer;
+import de.rub.nds.praktikum.messages.extensions.Extension;
+import de.rub.nds.praktikum.util.Util;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * A serializer for a certificate entry
@@ -10,7 +16,7 @@ public class CertificateEntrySerializer extends Serializer<CertificateEntry> {
     private final CertificateEntry certificateEntry;
 
     /**
-     * Contructor
+     * Constructor
      *
      * @param certificateEntry The certificate Entry that should get serialized
      */
@@ -19,7 +25,7 @@ public class CertificateEntrySerializer extends Serializer<CertificateEntry> {
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

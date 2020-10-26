@@ -36,6 +36,7 @@ public class TlsProtocol {
      * @param socket the socket which should be used
      * @param cert the server certificate
      * @param key the private key for the server certificate
+     * @param timeout the timeout for stream traffic
      * @throws IOException throws an io exception if something goes wrong with
      * the socket streams
      */
@@ -67,7 +68,7 @@ public class TlsProtocol {
     }
 
     /**
-     * Performs a step in the statemachine
+     * performs a step in the statemachine
      *
      * @throws IOException if something goes wrong with the socket streams
      */

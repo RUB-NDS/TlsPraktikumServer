@@ -33,7 +33,7 @@ public enum ExtensionType {
     /**
      * Returns the byte[] value of this extension type
      *
-     * @return the byte[] value of this extnesion type
+     * @return the byte[] value of this extension type
      */
     public byte[] getValue() {
         return value;

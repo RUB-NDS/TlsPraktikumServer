@@ -21,7 +21,7 @@ public class RecordSerializer extends Serializer<Record> {
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

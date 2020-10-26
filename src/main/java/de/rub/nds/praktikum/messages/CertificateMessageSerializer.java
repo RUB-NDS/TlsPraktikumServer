@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * A serializer class which transfroms a certificate message object into its
+ * A serializer class which transforms a certificate message object into its
  * byte representation
  *
  */
@@ -26,7 +26,7 @@ public class CertificateMessageSerializer extends Serializer<CertificateMessage>
     }
 
     @Override
-    protected byte[] serializeBytes() {
+    protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
 

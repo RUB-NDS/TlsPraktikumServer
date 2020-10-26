@@ -1,6 +1,10 @@
 package de.rub.nds.praktikum.messages.extensions;
 
+import de.rub.nds.praktikum.constants.ProtocolVersion;
+import de.rub.nds.praktikum.exception.ParserException;
 import de.rub.nds.praktikum.messages.Parser;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A parser class which parses a provided byte[] into a supported versions

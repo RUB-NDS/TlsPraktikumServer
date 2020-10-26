@@ -63,6 +63,15 @@ public class KeyShareExtension extends Extension {
     }
 
     /**
+     * Checks if KeyShareExtension has KeyShareEntries.
+     *
+     * @return true if KeyShareExtension has entries, false otherwise.
+     */
+    public boolean hasEntries() {
+        return entryList.size() > 0;
+    }
+
+    /**
      * Returns a list of the key share entries
      *
      * @return An unmodifiable list of the key share entries

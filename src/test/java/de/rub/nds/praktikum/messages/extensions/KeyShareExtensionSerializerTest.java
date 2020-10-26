@@ -30,6 +30,6 @@ public class KeyShareExtensionSerializerTest {
     public void testEntrylessSerializeBytes() {
         KeyShareExtension extension = new KeyShareExtension(NamedGroup.ECDH_X25519);
         KeyShareExtensionSerializer serializer = new KeyShareExtensionSerializer(extension);
-        assertArrayEquals(Util.hexStringToByteArray("001d"), serializer.serialize());
+        assertArrayEquals("Serialized is not ECDH_X25519",Util.hexStringToByteArray("001d"), serializer.serialize());
     }
 }
