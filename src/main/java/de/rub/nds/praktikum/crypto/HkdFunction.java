@@ -94,7 +94,7 @@ public class HkdFunction {
      * @param toHash the data that should be hashed
      * @return the derived secret
      */
-    public static byte[] deriveSecret(byte[] prk, String labelIn,
+    public static byte[] deriveSecret(byte[] prk, String labelIn, byte[] toHash) {
             throw new UnsupportedOperationException("Add code here");
     }
 
