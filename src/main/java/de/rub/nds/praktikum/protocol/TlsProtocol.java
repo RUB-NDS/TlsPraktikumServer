@@ -97,7 +97,7 @@ public class TlsProtocol {
     }
 
     /**
-     * Sends the provided data[] as application data
+     * Sends the provided data over the applicationLayer if there is a connection
      *
      * @param data the data to send
      * @throws IOException if something goes wrong with the streams
@@ -137,11 +137,16 @@ public class TlsProtocol {
     }
 
     /**
-     * Returns the session context of the protocol
-     *
      * @return the session context of the protocol
      */
     public SessionContext getContext() {
         return context;
+    }
+    
+    /**
+     * @return the session recordLayer of the protocol
+     */
+    public RecordLayer getRecordLayer() {
+        return recordLayer;
     }
 }

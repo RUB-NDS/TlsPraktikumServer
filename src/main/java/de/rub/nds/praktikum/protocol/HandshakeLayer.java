@@ -3,6 +3,7 @@ package de.rub.nds.praktikum.protocol;
 import de.rub.nds.praktikum.constants.CipherSuite;
 import de.rub.nds.praktikum.constants.CompressionMethod;
 import de.rub.nds.praktikum.constants.ExtensionType;
+import de.rub.nds.praktikum.constants.FieldLength;
 import de.rub.nds.praktikum.constants.HandshakeMessageType;
 import de.rub.nds.praktikum.constants.NamedGroup;
 import de.rub.nds.praktikum.constants.ProtocolType;

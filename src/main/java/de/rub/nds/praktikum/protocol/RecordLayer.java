@@ -122,6 +122,14 @@ public class RecordLayer {
     public void activateEncryption() {
         encryptionIsActive = true;
     }
+    
+    /**
+     * 
+     * @return true if the encryption is active
+     */
+    public boolean isEncryptionActive() {
+        return encryptionIsActive;
+    }
 
     /**
      * Encrypts a record. Updates its type and sets the encrypted content in the

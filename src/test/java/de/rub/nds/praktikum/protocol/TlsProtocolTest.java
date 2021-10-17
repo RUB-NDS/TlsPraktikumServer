@@ -259,6 +259,7 @@ public class TlsProtocolTest {
         assertNotNull("ClientHandshakeTrafficSecret must be set", protocol.getContext().getClientHandshakeTrafficSecret());
         assertNotNull("ServerHandshakeTrafficSecret must be set", protocol.getContext().getServerHandshakeTrafficSecret());
         assertNotNull("EcdheSecret must be set", protocol.getContext().getSharedEcdheSecret());
+        assertEquals("Encryption must be active", true, protocol.getRecordLayer().isEncryptionActive());
     }
 
     @Test
