@@ -95,7 +95,7 @@ public class HkdFunction {
      * @return the derived secret
      */
     public static byte[] deriveSecret(byte[] prk, String labelIn, byte[] toHash) {
-            throw new UnsupportedOperationException("Add code here");
+        throw new UnsupportedOperationException("Add code here");
     }
 
     /**
@@ -104,9 +104,9 @@ public class HkdFunction {
      *
      * @param prk The Prk
      * @param labelIn The InputLabel
-     * @param hashValue The Hashvalue
+     * @param hashValue The HashValue
      * @param outLen The output length
-     * @return The expaneded Label bytes
+     * @return The expanded Label bytes
      */
     public static byte[] expandLabel(byte[] prk, String labelIn, byte[] hashValue, int outLen) {
         throw new UnsupportedOperationException("Add code here");
