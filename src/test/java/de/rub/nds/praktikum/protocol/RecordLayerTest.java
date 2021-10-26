@@ -145,8 +145,8 @@ public class RecordLayerTest {
         assertEquals("The number of records is invalid",1, receivedRecords.size());
         Record testRecord = receivedRecords.get(0);
         assertEquals("Type is not from the record",0x33, testRecord.getType());
-        assertArrayEquals("Version is not from the record",testRecord.getVersion(), Util.hexStringToByteArray("FFFF"));
-        assertArrayEquals("Data is not from the record",testRecord.getData(), Util.hexStringToByteArray("CC"));
+        assertArrayEquals("Version is not from the record", Util.hexStringToByteArray("FFFF"), testRecord.getVersion());
+        assertArrayEquals("Data is not from the record", Util.hexStringToByteArray("CC"), testRecord.getData());
         inputStream = new ByteArrayInputStream(Util.hexStringToByteArray("33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC"));
         recordLayer = new RecordLayer(outputStream, inputStream, context, 0);
         receivedRecords = recordLayer.receiveData();

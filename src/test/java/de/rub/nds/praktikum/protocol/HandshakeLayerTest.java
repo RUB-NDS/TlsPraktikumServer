@@ -280,8 +280,8 @@ public class HandshakeLayerTest {
                 return null;
             }
         };
-        assertNotEquals("Client finshed key must be set",null, context.getClientFinishedKey());
-        assertNotEquals("Server finshed key must be set",null, context.getServerFinishedKey());
+        assertNotNull("Client finshed key must be set", context.getClientFinishedKey());
+        assertNotNull("Server finshed key must be set", context.getServerFinishedKey());
         assertArrayEquals("The Digest does not equal - did you foret to update it?", Util.hexStringToByteArray("9ab9f32be1080f7f1ba315137e4f38c25e216dc33185b386d92c234a8c9a441b"), context.getDigest());
         tempParser.parse();
     }
