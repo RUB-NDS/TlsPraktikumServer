@@ -147,11 +147,11 @@ public class HandshakeLayer extends TlsSubProtocol {
 
 
     /**
-     * Analyze byte stream and parse handshake messages. If a proper message is
-     * received, update the TLS context. Consider creating several private
-     * functions for processing different handshake messages.
+     * Example private function called from processByteStream. Parse handshakePayload, check if payload is
+     * correct, handle ClientHello.
      *
      * @param stream a TLS 1.3 handshake message from the client as a byte array
+     * @param handshakePayload handshakePayload to be parsed
      */
     private void processClientHello(byte[] handshakePayload, byte[] stream) throws IOException {
         throw new UnsupportedOperationException("Add code here");
