@@ -24,7 +24,6 @@ import java.util.List;
 
 /**
  * A parser class which parses a provided byte[] into a client hello object
- *
  */
 public class ClientHelloParser extends Parser<ClientHello> {
 

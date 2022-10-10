@@ -55,7 +55,6 @@ import org.bouncycastle.math.ec.rfc7748.X25519;
 /**
  * The handshake layer is responsible for the exchange of handshake messages
  * which are ultimately used to create the connection
- *
  */
 public class HandshakeLayer extends TlsSubProtocol {
 
@@ -66,10 +65,10 @@ public class HandshakeLayer extends TlsSubProtocol {
     /**
      * Constructor
      *
-     * @param context The SessionContext for which this handshake layer should
-     * be constructed
+     * @param context     The SessionContext for which this handshake layer should
+     *                    be constructed
      * @param recordLayer The record layer that should be used by this handshake
-     * layer
+     *                    layer
      */
     public HandshakeLayer(SessionContext context, RecordLayer recordLayer) {
         super(ProtocolType.HANDSHAKE.getByteValue());
@@ -135,10 +134,10 @@ public class HandshakeLayer extends TlsSubProtocol {
     }
 
     /**
-     * Analyze byte stream and parse handshake messages.
-     * If a proper message is received, update the TLS context.
-     * Consider creating several private functions for processing different handshake messages.
-     * 
+     * Analyze byte stream and parse handshake messages. If a proper message is
+     * received, update the TLS context. Consider creating several private
+     * functions for processing different handshake messages.
+     *
      * @param stream a TLS 1.3 handshake message from the client as a byte array
      */
     @Override
@@ -146,4 +145,15 @@ public class HandshakeLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
+    /**
+     * Analyze byte stream and parse handshake messages. If a proper message is
+     * received, update the TLS context. Consider creating several private
+     * functions for processing different handshake messages.
+     *
+     * @param stream a TLS 1.3 handshake message from the client as a byte array
+     */
+    private void processClientHello(byte[] handshakePayload, byte[] stream) throws IOException {
+        throw new UnsupportedOperationException("Add code here");
+    }
 }

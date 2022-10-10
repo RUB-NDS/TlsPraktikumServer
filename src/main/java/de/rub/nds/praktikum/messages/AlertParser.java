@@ -4,7 +4,6 @@ import de.rub.nds.praktikum.exception.ParserException;
 
 /**
  * A parser class for alert messages
- *
  */
 public class AlertParser extends Parser<Alert> {
 

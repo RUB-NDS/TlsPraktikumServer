@@ -9,7 +9,6 @@ import java.io.IOException;
 /**
  * A serializer class which transfroms a server hello message object into its
  * byte representation
- *
  */
 public class ServerHelloSerializer extends Serializer<ServerHello> {
 

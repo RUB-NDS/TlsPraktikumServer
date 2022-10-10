@@ -95,6 +95,7 @@ public class RecordLayer {
      * stream
      */
     public List<Record> receiveData() throws IOException {
+        byte[] data = fetchData();
         throw new UnsupportedOperationException("Add code here");
     }
 

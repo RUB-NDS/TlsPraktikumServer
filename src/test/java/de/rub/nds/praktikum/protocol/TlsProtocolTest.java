@@ -148,7 +148,7 @@ public class TlsProtocolTest {
         List<KeyShareEntry> keyShareEntryList = new LinkedList<>();
         keyShareEntryList.add(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), Util.hexStringToByteArray("AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122")));
         protocol.getContext().setClientCipherSuiteList(suiteList);
-        protocol.getContext().setKeyShareEntryList(keyShareEntryList);
+        protocol.getContext().setClientKeyShareEntryList(keyShareEntryList);
         protocol.getContext().setClientSessionId(Util.hexStringToByteArray("AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011"));
         suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
         protocol.getContext().setClientCipherSuiteList(suiteList);
@@ -246,7 +246,7 @@ public class TlsProtocolTest {
         protocol.getContext().setClientRandom(new byte[32]);
         protocol.getContext().setClientSessionId(new byte[32]);
         protocol.getContext().setClientSupportedVersions(Arrays.asList(ProtocolVersion.TLS_1_3));
-        protocol.getContext().setKeyShareEntryList(Arrays.asList(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), new byte[32])));
+        protocol.getContext().setClientKeyShareEntryList(Arrays.asList(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), new byte[32])));
         protocol.stepConnectionState();
         //Make sure to reset the SQN's in the record layer here
         assertEquals("TlsState is invalid", TlsState.NEGOTIATED, protocol.getContext().getTlsState());
@@ -322,7 +322,7 @@ public class TlsProtocolTest {
      */
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe3.class)
-    public void testTranscriptHash() throws IOException {
+    public void testRetryHash() throws IOException {
         final byte[] expectedTranscript = Util.hexStringToByteArray("f4023ac710e90d46582ddb5e05565699ebbbc349547795a70b07f3d3e278a6e0");
         Socket socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

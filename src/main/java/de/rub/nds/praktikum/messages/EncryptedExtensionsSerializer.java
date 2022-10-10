@@ -5,7 +5,6 @@ import de.rub.nds.praktikum.constants.FieldLength;
 /**
  * A serializer class which transforms a encrypted extension message object into
  * its byte representation
- *
  */
 public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtensions> {
 
@@ -15,7 +14,7 @@ public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtension
      * Constructor
      *
      * @param encryptedExtensions the encrypted extensions message that should
-     * be serialized
+     *                            be serialized
      */
     public EncryptedExtensionsSerializer(EncryptedExtensions encryptedExtensions) {
         this.encryptedExtensions = encryptedExtensions;

@@ -34,19 +34,19 @@ public class AlertLayerTest {
     @Category(de.rub.nds.praktikum.Aufgabe1.class)
     public void testSendAlert() throws Exception {
         layer.sendAlert(AlertLevel.WARNING, AlertDescription.BAD_RECORD_MAC);
-        assertArrayEquals("Alert is not warning, bad record mac",outputStream.toByteArray(), Util.hexStringToByteArray("15030300020114"));
+        assertArrayEquals("Alert is not warning, bad record mac", Util.hexStringToByteArray("15030300020114"), outputStream.toByteArray());
         layer.sendAlert(AlertLevel.FATAL, AlertDescription.BAD_RECORD_MAC);
-        assertArrayEquals("Alert is not fatal, bad record mac",outputStream.toByteArray(), Util.hexStringToByteArray("1503030002011415030300020214"));
+        assertArrayEquals("Alert is not fatal, bad record mac", Util.hexStringToByteArray("1503030002011415030300020214"), outputStream.toByteArray());
     }
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
     public void testSendAlertTask2() throws Exception {
         layer.sendAlert(AlertLevel.WARNING, AlertDescription.BAD_RECORD_MAC);
-        assertArrayEquals("Alert is not warning, bad record mac",outputStream.toByteArray(), Util.hexStringToByteArray("15030300020114"));
+        assertArrayEquals("Alert is not warning, bad record mac", Util.hexStringToByteArray("15030300020114"), outputStream.toByteArray());
         assertNotEquals("Warning alerts should be fine", TlsState.ERROR, context.getTlsState());
         layer.sendAlert(AlertLevel.FATAL, AlertDescription.BAD_RECORD_MAC);
-        assertArrayEquals("Alert is not fatal, bad record mac",outputStream.toByteArray(), Util.hexStringToByteArray("1503030002011415030300020214"));
+        assertArrayEquals("Alert is not fatal, bad record mac", Util.hexStringToByteArray("1503030002011415030300020214"), outputStream.toByteArray());
         assertEquals("Fatal alerts should move us to the error state", TlsState.ERROR, context.getTlsState());
     }
 

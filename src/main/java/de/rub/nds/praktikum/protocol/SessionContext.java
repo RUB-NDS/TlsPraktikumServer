@@ -39,7 +39,7 @@ public class SessionContext {
 
     private TlsState tlsState = null;
 
-    private List<KeyShareEntry> keyShareEntryList = null;
+    private List<KeyShareEntry> clientKeyShareEntryList = null;
 
     private List<ProtocolVersion> clientSupportedVersions = null;
 
@@ -426,18 +426,18 @@ public class SessionContext {
      *
      * @return the certificatePrivateKey share entry list of the client
      */
-    public List<KeyShareEntry> getKeyShareEntryList() {
-        return Collections.unmodifiableList(keyShareEntryList);
+    public List<KeyShareEntry> getClientKeyShareEntryList() {
+        return Collections.unmodifiableList(clientKeyShareEntryList);
     }
 
     /**
      * Sets the certificatePrivateKey share entry list of the client
      *
-     * @param keyShareEntryList the certificatePrivateKey share entry list of
+     * @param clientKeyShareEntryList the certificatePrivateKey share entry list of
      * the client
      */
-    public void setKeyShareEntryList(List<KeyShareEntry> keyShareEntryList) {
-        this.keyShareEntryList = keyShareEntryList;
+    public void setClientKeyShareEntryList(List<KeyShareEntry> clientKeyShareEntryList) {
+        this.clientKeyShareEntryList = clientKeyShareEntryList;
     }
 
     /**

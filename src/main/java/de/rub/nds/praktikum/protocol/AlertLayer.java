@@ -12,7 +12,6 @@ import java.io.IOException;
 /**
  * The alert layer is responsible for the exchange of error messages between the
  * client and the server.
- *
  */
 public class AlertLayer extends TlsSubProtocol {
 
@@ -23,10 +22,10 @@ public class AlertLayer extends TlsSubProtocol {
     /**
      * Constructor
      *
-     * @param context The SessionContext for which this alert layer should be
-     * constructed
+     * @param context     The SessionContext for which this alert layer should be
+     *                    constructed
      * @param recordLayer The record layer that should be used by this alert
-     * layer
+     *                    layer
      */
     public AlertLayer(SessionContext context, RecordLayer recordLayer) {
         super(ProtocolType.ALERT.getByteValue());
@@ -39,7 +38,7 @@ public class AlertLayer extends TlsSubProtocol {
      * Sends an alert message with the provided parameters and sets the tls
      * state in the context to error if the alert is fatal.
      *
-     * @param alertLevel level of the alert
+     * @param alertLevel       level of the alert
      * @param alertDescription description of the alert
      * @throws IOException If something goes wrong during transmission
      */
