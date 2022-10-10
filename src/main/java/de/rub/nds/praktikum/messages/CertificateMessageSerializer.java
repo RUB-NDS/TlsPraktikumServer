@@ -10,7 +10,6 @@ import java.io.IOException;
 /**
  * A serializer class which transforms a certificate message object into its
  * byte representation
- *
  */
 public class CertificateMessageSerializer extends Serializer<CertificateMessage> {
 

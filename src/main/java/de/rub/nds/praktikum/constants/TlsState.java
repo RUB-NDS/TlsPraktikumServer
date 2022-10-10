@@ -2,6 +2,8 @@ package de.rub.nds.praktikum.constants;
 
 /**
  * Enum with possible states in the TLS state machine
+ * 
+ * the comment describes what was done to achieve the state
  */
 public enum TlsState {
 

@@ -5,7 +5,6 @@ import de.rub.nds.praktikum.messages.Serializer;
 /**
  * A serializer class which transforms a record object into its byte[]
  * representation
- *
  */
 public class RecordSerializer extends Serializer<Record> {
 

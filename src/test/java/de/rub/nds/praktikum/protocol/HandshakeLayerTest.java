@@ -72,7 +72,7 @@ public class HandshakeLayerTest {
         List<KeyShareEntry> keyShareEntryList = new LinkedList<>();
         keyShareEntryList.add(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), Util.hexStringToByteArray("AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122")));
         context.setClientCipherSuiteList(suiteList);
-        context.setKeyShareEntryList(keyShareEntryList);
+        context.setClientKeyShareEntryList(keyShareEntryList);
         context.setClientSessionId(Util.hexStringToByteArray("AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011"));
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         assertNull(context.getServerRandom());
@@ -280,8 +280,8 @@ public class HandshakeLayerTest {
                 return null;
             }
         };
-        assertNotEquals("Client finshed key must be set",null, context.getClientFinishedKey());
-        assertNotEquals("Server finshed key must be set",null, context.getServerFinishedKey());
+        assertNotNull("Client finshed key must be set", context.getClientFinishedKey());
+        assertNotNull("Server finshed key must be set", context.getServerFinishedKey());
         assertArrayEquals("The Digest does not equal - did you foret to update it?", Util.hexStringToByteArray("9ab9f32be1080f7f1ba315137e4f38c25e216dc33185b386d92c234a8c9a441b"), context.getDigest());
         tempParser.parse();
     }
@@ -299,7 +299,7 @@ public class HandshakeLayerTest {
         assertEquals("The list must contain 31 cipher suites",31, context.getClientCipherSuiteList().size()); //The list contains only 3 tls.1.3 suites - the rest will be null since we cannot convert them
         assertEquals("The list must contain 5 named goups",5, context.getClientNamedGroupList().size());
         assertEquals("The list must contain 4 TLS versions ",4, context.getClientSupportedVersions().size());
-        assertEquals("The list must contain 1 key share",1, context.getKeyShareEntryList().size());
+        assertEquals("The list must contain 1 key share",1, context.getClientKeyShareEntryList().size());
     }
 
     @Test

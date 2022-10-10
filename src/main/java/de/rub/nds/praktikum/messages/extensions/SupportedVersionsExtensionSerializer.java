@@ -5,7 +5,6 @@ import de.rub.nds.praktikum.messages.Serializer;
 /**
  * A serializer class which transforms a supported versions into its byte
  * representation
- *
  */
 public class SupportedVersionsExtensionSerializer extends Serializer<SupportedVersionsExtension> {
 

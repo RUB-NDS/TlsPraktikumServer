@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * A parser class which parses a provided byte[] into a supported versions
  * extension object
- *
  */
 public class SupportedVersionsExtensionParser extends Parser<SupportedVersionsExtension> {
 

@@ -35,7 +35,7 @@ public class ApplicationLayerTest {
     @Test
     public void testSendData() throws Exception {
         layer.sendData(Util.hexStringToByteArray("AABBCC"));
-        assertArrayEquals("Invalid data send",outputStream.toByteArray(), Util.hexStringToByteArray("1703030003AABBCC"));
+        assertArrayEquals("Invalid data send", Util.hexStringToByteArray("1703030003AABBCC"), outputStream.toByteArray());
     }
 
     @Test

@@ -12,6 +12,7 @@ import java.security.PrivateKey;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.Collection;
+
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.ASN1Primitive;
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
@@ -38,22 +39,20 @@ public class Main {
                 @Override
                 public void run() {
                     try {
-                        while (true) {
-                            int read;
-                            socket.getOutputStream().write("Greetings!".getBytes());
-                            socket.getOutputStream().flush();
+                        int read;
+                        socket.getOutputStream().write("Greetings!".getBytes());
+                        socket.getOutputStream().flush();
 
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            do {
-                                read = socket.getInputStream().read();
-                                stream.write(read);
-                            } while (read != 10);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        do {
+                            read = socket.getInputStream().read();
+                            stream.write(read);
+                        } while (read != 10);
 
-                            System.out.println(new String(stream.toByteArray()));
-                            socket.getOutputStream().write("I prefer tea anyways...".getBytes());
-                            socket.getOutputStream().flush();
-                            socket.close();
-                        }
+                        System.out.println(new String(stream.toByteArray()));
+                        socket.getOutputStream().write("I prefer tea anyways...".getBytes());
+                        socket.getOutputStream().flush();
+                        socket.close();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

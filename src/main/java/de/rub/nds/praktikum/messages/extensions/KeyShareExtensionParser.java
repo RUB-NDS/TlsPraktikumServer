@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * A parser class which parses a provided byte[] into a key share extension
  * object
- *
  */
 public class KeyShareExtensionParser extends Parser<KeyShareExtension> {
 
