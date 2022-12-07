@@ -76,4 +76,71 @@ public class HkdFunctionTest {
         assertArrayEquals(Util.hexStringToByteArray("725e98976eae3c4ea5687c9253f19b1f78f2a73e"), expandedLabel);
     }
 
+    /**
+     * Test with SHA-256 and longer inputs/outputs (copied verbatim from RFC)
+     *
+     * Hash = SHA-256
+     * IKM  = 0x000102030405060708090a0b0c0d0e0f
+     *        101112131415161718191a1b1c1d1e1f
+     *        202122232425262728292a2b2c2d2e2f
+     *        303132333435363738393a3b3c3d3e3f
+     *        404142434445464748494a4b4c4d4e4f (80 octets)
+     * salt = 0x606162636465666768696a6b6c6d6e6f
+     *        707172737475767778797a7b7c7d7e7f
+     *        808182838485868788898a8b8c8d8e8f
+     *        909192939495969798999a9b9c9d9e9f
+     *        a0a1a2a3a4a5a6a7a8a9aaabacadaeaf (80 octets)
+     *  info = 0xb0b1b2b3b4b5b6b7b8b9babbbcbdbebf
+     *        c0c1c2c3c4c5c6c7c8c9cacbcccdcecf
+     *        d0d1d2d3d4d5d6d7d8d9dadbdcdddedf
+     *        e0e1e2e3e4e5e6e7e8e9eaebecedeeef
+     *        f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff (80 octets)
+     *  L    = 82*
+     *
+     *  PRK  = 0x06a6b88c5853361a06104c9ceb35b45c
+     *         ef760014904671014a193f40c15fc244 (32 octets)
+     *  OKM  = 0xb11e398dc80327a1c8e7f78c596a4934
+     *         4f012eda2d4efad8a050cc4c19afa97c
+     *         59045a99cac7827271cb41c65e590e09
+     *         da3275600c2f09b8367793a9aca3db71
+     *         cc30c58179ec3e87c14c01d5c1f3434f
+     *         1d87 (82 octets)
+     *
+     */
+    @Test
+    public void testHkdFunctionRfcTestVector() {
+        byte[] ikm = Util.hexStringToByteArray("000102030405060708090a0b0c0d0e0f"
+                + "101112131415161718191a1b1c1d1e1f"
+                + "202122232425262728292a2b2c2d2e2f"
+                + "303132333435363738393a3b3c3d3e3f"
+                + "404142434445464748494a4b4c4d4e4f");
+        byte[] salt = Util.hexStringToByteArray("606162636465666768696a6b6c6d6e6f"
+                + "707172737475767778797a7b7c7d7e7f"
+                + "808182838485868788898a8b8c8d8e8f"
+                + "909192939495969798999a9b9c9d9e9f"
+                + "a0a1a2a3a4a5a6a7a8a9aaabacadaeaf");
+        byte[] info = Util.hexStringToByteArray("b0b1b2b3b4b5b6b7b8b9babbbcbdbebf"
+                + "c0c1c2c3c4c5c6c7c8c9cacbcccdcecf"
+                + "d0d1d2d3d4d5d6d7d8d9dadbdcdddedf"
+                + "e0e1e2e3e4e5e6e7e8e9eaebecedeeef"
+                + "f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");
+        int L = 82;
+
+        byte[] prk = HkdFunction.extract(salt, ikm);
+        assertArrayEquals("Wrongly computes PRK as intermediate value with extract()",
+                Util.hexStringToByteArray("06a6b88c5853361a06104c9ceb35b45c"
+                        + "ef760014904671014a193f40c15fc244"),
+                prk);
+
+        byte[] okm = HkdFunction.expand(prk, info, L);
+        assertArrayEquals("Wrongly computes okm from prk and info with expand()",
+                Util.hexStringToByteArray("b11e398dc80327a1c8e7f78c596a4934"
+                        + "4f012eda2d4efad8a050cc4c19afa97c"
+                        + "59045a99cac7827271cb41c65e590e09"
+                        + "da3275600c2f09b8367793a9aca3db71"
+                        + "cc30c58179ec3e87c14c01d5c1f3434f"
+                        + "1d87"),
+                okm);
+    }
+
 }
