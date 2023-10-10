@@ -1,7 +1,7 @@
 package de.rub.nds.praktikum.constants;
 
 /**
- * Enum with with the length of various fields in TLS
+ * Enum with the length of various fields in TLS
  */
 public class FieldLength {
 
@@ -46,7 +46,7 @@ public class FieldLength {
     public static final int EXTENSIONS_LENGTH = 2;
 
     /**
-     * The length of a extension type field
+     * The length of an extension type field
      */
     public static final int EXTENSION_TYPE = 2;
 
@@ -78,7 +78,7 @@ public class FieldLength {
     /**
      * The length of a signature algorithm field
      */
-    public static final int SIGNATURE_ALGORITM_LENGTH = 2;
+    public static final int SIGNATURE_ALGORITHM_LENGTH = 2;
     /**
      * This is only in this course, the verify data length depends on the
      * negotiated hash function

@@ -76,8 +76,13 @@ public class TlsProtocolTest {
     @Test(expected = TlsException.class) //Test that connection times out if we do not receive a client hello
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
     public void testInitSessionNoClientHello() throws Exception {
-        protocol.getContext().setTlsState(TlsState.START);
-        protocol.stepConnectionState();
+        try {
+            protocol.stepConnectionState();
+        } catch (Exception e){
+            assertArrayEquals("Messages must not be sent", Util.hexStringToByteArray(""), outputStream.toByteArray());
+            throw e;
+        }
+
     }
 
     @Test
@@ -115,7 +120,7 @@ public class TlsProtocolTest {
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
-    public void testStepStatemachineWait_AwaitToRecievedClientHello() throws Exception {
+    public void testStepStatemachineWait_AwaitToReceivedClientHello() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Util.hexStringToByteArray("160301013c010001380303afe00859b6a927b382420cb225e5d23097f14e09c801c43eadce55d9d34d6552200e94608a60749bf7d2aa16be7b64db938ab697ee7c5ec6ddc8ae5de2c89a5ed0003e130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff010000b10000000e000c0000096c6f63616c686f7374000b000403000102000a00160014001d0017001e0019001801000101010201030104002300000016000000170000000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602002b0009080304030303020301002d00020101003300260024001d0020a87d9ff9e5c5ea38f3f11ce3663fe80023f6977bc44b5a8eb561161b5f3eaa22"));
@@ -301,7 +306,7 @@ public class TlsProtocolTest {
      */
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe4.class)
-    public void testParseChangeChipherSpecAndClientFinisedInOneStream() throws IOException {
+    public void testParseChangeCipherSpecAndClientFinishedInOneStream() throws IOException {
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Util.hexStringToByteArray("140303000101160303002414000020af7220c93e5c02736bfc91499f00b1e2c939dda1e12f88e43e898489c94db4a5"));
         when(socket.getInputStream()).thenReturn(byteArrayInputStream);
         protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);

@@ -1,9 +1,7 @@
 package de.rub.nds.praktikum.messages.extensions;
 
-import de.rub.nds.praktikum.constants.FieldLength;
-import de.rub.nds.praktikum.exception.ParserException;
 import de.rub.nds.praktikum.messages.Parser;
-import de.rub.nds.praktikum.util.Util;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;

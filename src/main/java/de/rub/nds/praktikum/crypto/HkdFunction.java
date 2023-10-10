@@ -27,7 +27,7 @@ public class HkdFunction {
     public static final String IV = "iv";
 
     /**
-     * Finished labal
+     * Finished label
      */
     public static final String FINISHED = "finished";
 

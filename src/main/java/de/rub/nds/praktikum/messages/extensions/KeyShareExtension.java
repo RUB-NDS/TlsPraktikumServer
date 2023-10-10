@@ -54,7 +54,7 @@ public class KeyShareExtension extends Extension {
     }
 
     /**
-     * The named group assigned to an Entryless KeyShareExtenson.
+     * The named group assigned to an Entryless KeyShareExtension.
      *
      * @return A named group.
      */

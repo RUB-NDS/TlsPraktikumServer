@@ -14,9 +14,9 @@ public class TlsException extends RuntimeException {
     }
 
     /**
-     * Contructor
+     * Constructor
      *
-     * @param message excpetion message
+     * @param message exception message
      */
     public TlsException(String message) {
         super(message);

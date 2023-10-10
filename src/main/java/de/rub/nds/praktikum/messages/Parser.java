@@ -66,7 +66,7 @@ public abstract class Parser<T> {
     }
 
     /**
-     * Parses a number of bytes from the Array and returns them as a int. Throws
+     * Parses a number of bytes from the Array and returns them as an int. Throws
      * a ParserException if the number of bytes cannot be parsed. Moves the
      * pointer accordingly.
      *
@@ -150,10 +150,10 @@ public abstract class Parser<T> {
     }
 
     /**
-     * Checks if there are atleast count bytes left to read
+     * Checks if there are at least count bytes left to read
      *
      * @param count Number of bytes to check for
-     * @return True if there are atleast count bytes left to read
+     * @return True if there are at least count bytes left to read
      */
     protected boolean enoughBytesLeft(int count) {
         return getBytesLeft() >= count;
@@ -162,7 +162,7 @@ public abstract class Parser<T> {
     /**
      * Parses n bytes or all remaining bytes
      *
-     * @param n number of bytes to parse maxiamlly
+     * @param n number of bytes to parse maximally
      * @return the parsed bytes
      */
     protected byte[] parseArrayOrTillEnd(int n) {

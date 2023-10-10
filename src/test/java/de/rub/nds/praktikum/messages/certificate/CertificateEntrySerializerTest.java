@@ -24,6 +24,6 @@ public class CertificateEntrySerializerTest {
         //A Certificate chain consisting of only 1 certificate with the bytes 1 2 3 
         CertificateEntry certEntry = new CertificateEntry(cert1, new LinkedList<>());
         CertificateEntrySerializer serializer = new CertificateEntrySerializer(certEntry);
-        assertArrayEquals("A single CerticiateEntry should contain a length field, the cert bytes, the extension length bytes and (not considered in this course) extension bytes", Util.hexStringToByteArray("0000030102030000"), serializer.serialize());
+        assertArrayEquals("A single Certificate Entry should contain a length field, the cert bytes, the extension length bytes and (not considered in this course) extension bytes", Util.hexStringToByteArray("0000030102030000"), serializer.serialize());
     }
 }

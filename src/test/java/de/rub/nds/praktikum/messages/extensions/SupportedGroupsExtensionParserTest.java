@@ -23,7 +23,7 @@ public class SupportedGroupsExtensionParserTest {
         extension = parser.parse();
         assertEquals("There are exactly two entries in the list", 2, extension.getNamedGroupList().size());
         assertEquals("The first entry is X25519", NamedGroup.ECDH_X25519, extension.getNamedGroupList().get(0));
-        assertEquals("The second entry is X25519 aswell", NamedGroup.ECDH_X25519, extension.getNamedGroupList().get(1));
+        assertEquals("The second entry is X25519 as well", NamedGroup.ECDH_X25519, extension.getNamedGroupList().get(1));
     }
 
     @Test(expected = ParserException.class)

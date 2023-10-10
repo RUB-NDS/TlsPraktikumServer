@@ -1,21 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.constants.CipherSuite;
-import de.rub.nds.praktikum.constants.CompressionMethod;
-import de.rub.nds.praktikum.constants.ExtensionType;
-import de.rub.nds.praktikum.constants.FieldLength;
-import de.rub.nds.praktikum.constants.ProtocolVersion;
-import de.rub.nds.praktikum.exception.ParserException;
-import de.rub.nds.praktikum.messages.extensions.Extension;
-import de.rub.nds.praktikum.messages.extensions.KeyShareExtension;
-import de.rub.nds.praktikum.messages.extensions.KeyShareExtensionParser;
-import de.rub.nds.praktikum.messages.extensions.SupportedGroupsExtension;
-import de.rub.nds.praktikum.messages.extensions.SupportedGroupsExtensionParser;
-import de.rub.nds.praktikum.messages.extensions.SupportedSignaturesAlgorithmExtension;
-import de.rub.nds.praktikum.messages.extensions.SupportedSignaturesAlgorithmExtensionParser;
-import de.rub.nds.praktikum.messages.extensions.SupportedVersionsExtension;
-import de.rub.nds.praktikum.messages.extensions.SupportedVersionsExtensionParser;
-import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;

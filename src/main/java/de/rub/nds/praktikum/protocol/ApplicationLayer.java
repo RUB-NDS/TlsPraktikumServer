@@ -1,9 +1,8 @@
 package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
-import de.rub.nds.praktikum.constants.TlsState;
-import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.records.Record;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 

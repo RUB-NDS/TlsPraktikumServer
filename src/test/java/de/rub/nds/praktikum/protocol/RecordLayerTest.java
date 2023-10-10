@@ -110,7 +110,7 @@ public class RecordLayerTest {
      */
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe3.class)
-    public void testReceiveEncrypedData() throws Exception {
+    public void testReceiveEncryptedData() throws Exception {
         Record record1 = new Record(ProtocolType.APPLICATION_DATA.getByteValue(), new byte[]{03, 03}, Util.hexStringToByteArray("f10b26d8fcaf67b5b828f712122216a1cd14187465b77637cbcd78539128bb93246dcca1af56f1eaa271666077455bc54965d85f05f9bd36d6996171eb536aff613eeddc42bad5a2d2227c4606f1215f980e7afaf56bd3b85a51be130003101a758d077b1c891d8e7a22947e5a229851fd42a9dd422608f868272abf92b3d43fb46ac420259346067f66322fd708885680f4b4433c29116f2dfa529e09bba53c7cd920121724809eaddcc84307ef46fc51a0b33d99d39db337fcd761ce0f2b02dc73dedb6fddb77c4f8099bde93d5bee08bcf2131f29a2a37ff07949e8f8bcdd3e8310b8bf8b3444c85aaf0d2aeb2d4f36fd14d5cb51fcebff418b3827136ab9529e9a3d3f35e4c0ae749ea2dbc94982a1281d3e6daab719aa4460889321a008bf10fa06ac0c61cc122cc90d5e22c0030c986ae84a33a0c47df174bcfbd50bf78ffdf24051ab423db63d5815db2f830040f30521131c98c66f16c362addce2fba0602cf0a7dddf22e8def7516cdfee95b4056cc9ad38c95352335421b5b1ffbadf75e5212fdad7a75f52a2801486a1eec3539580bee0e4b337cda6085ac9eccd1a0f1a46cebfbb5cdfa3251ac28c3bc826148c6d8c1eb6a06f77f6ff632c6a83e283e8f9df7c6dbabf1c6ea40629a85b43ab0c73d34f9d5072832a104eda3f75f5d83da6e14822a18e14099d749eafd823ca2ac7542086501eca206ce7887920008573757ce2f230a890782b99cc682377beee812756d04f9025135fb599d746fefe7316c922ac265ca0d29021375adb63c1509c3e242dfb92b8dee891f7368c4058399b8db9075f2dcc8216194e503b6652d87d2cb41f99adfdcc5be5ec7e1e6326ac22d70bd3ba652827532d669aff005173597f8039c3ea4922d3ec757670222f6ac29b93e90d7ad3f6dd96328e429cfcfd5cca22707fe2d86ad1dcb0be756e8e"));
         Record record2 = new Record(ProtocolType.APPLICATION_DATA.getByteValue(), new byte[]{03, 03}, Util.hexStringToByteArray("865ed52254f3b8351ab41ac79dda363b4c1529ecd2f0"));
         byte[] recordData1 = (new RecordSerializer(record1)).serialize();
@@ -167,7 +167,7 @@ public class RecordLayerTest {
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe1.class)
-    public void testSendMulitpleRecordData() throws IOException {
+    public void testSendMultipleRecordData() throws IOException {
         SessionContext context = new SessionContext(null, null);
         inputStream = new ByteArrayInputStream(new byte[0]);
         recordLayer = new RecordLayer(outputStream, inputStream, context, 0);

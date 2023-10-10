@@ -1,13 +1,10 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.exception.TlsException;
-import de.rub.nds.praktikum.messages.extensions.Extension;
-import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * A serializer class which transfroms a server hello message object into its
+ * A serializer class which transforms a server hello message object into its
  * byte representation
  */
 public class ServerHelloSerializer extends Serializer<ServerHello> {

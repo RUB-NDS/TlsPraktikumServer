@@ -14,9 +14,9 @@ public class UnexpectedMessageException extends RuntimeException {
     }
 
     /**
-     * Contructor
+     * Constructor
      *
-     * @param message excpetion message
+     * @param message exception message
      */
     public UnexpectedMessageException(String message) {
         super(message);

@@ -70,7 +70,7 @@ public enum NamedGroup {
      * recognized
      *
      * @param value the byte[] to convert
-     * @return Null if the value is not regocnized
+     * @return Null if the value is not recognized
      */
     public static NamedGroup convert(byte[] value) {
         if (value.length != 2) {

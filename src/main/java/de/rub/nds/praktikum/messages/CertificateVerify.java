@@ -4,9 +4,9 @@ import de.rub.nds.praktikum.constants.HandshakeMessageType;
 
 /**
  * This class represents a TLS certificate verify message. This message is sent
- * by the server to prove the possesion of the private key. It contains a
- * signtatureAndHash algorithm byte[] as an identifier for the used algorithms
- * as well as a signture.
+ * by the server to prove the possession of the private key. It contains a
+ * signatureAndHash algorithm byte[] as an identifier for the used algorithms
+ * as well as a signature.
  *
  */
 public class CertificateVerify extends HandshakeMessage {

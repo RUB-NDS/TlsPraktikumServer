@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * Enum with possible dompression method values
+ * Enum with possible compression method values
  */
 public enum CompressionMethod {
 

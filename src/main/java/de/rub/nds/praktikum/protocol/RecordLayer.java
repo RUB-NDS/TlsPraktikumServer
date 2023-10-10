@@ -1,11 +1,8 @@
 package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
-import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.records.Record;
-import de.rub.nds.praktikum.records.RecordParser;
-import de.rub.nds.praktikum.records.RecordSerializer;
-import de.rub.nds.praktikum.util.Util;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +25,6 @@ import javax.crypto.spec.SecretKeySpec;
  * for the encapsulation of the data from higher level protocols. Once the
  * ServerHello message is sent records are encrypted under the current handshake
  * context
- *
  */
 public class RecordLayer {
 
@@ -118,14 +114,12 @@ public class RecordLayer {
 
     /**
      * Activates the encryption with the parameters from the session context.
-     *
      */
     public void activateEncryption() {
         encryptionIsActive = true;
     }
     
     /**
-     * 
      * @return true if the encryption is active
      */
     public boolean isEncryptionActive() {

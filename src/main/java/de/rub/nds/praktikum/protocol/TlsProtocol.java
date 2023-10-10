@@ -6,6 +6,7 @@ import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.constants.TlsState;
 import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.records.Record;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -134,6 +135,14 @@ public class TlsProtocol {
             }
         }
         return appDataStream.toByteArray();
+    }
+
+    /**
+     * This method is called before the connection is closed.
+     * @throws IOException
+     */
+    public void beforeClose() throws IOException {
+        throw new UnsupportedOperationException("Add code here");
     }
 
     /**

@@ -1,7 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.constants.FieldLength;
-
 /**
  * A serializer class which transforms a certificate verify message object into
  * its byte representation
