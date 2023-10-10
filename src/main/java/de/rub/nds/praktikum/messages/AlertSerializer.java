@@ -1,7 +1,7 @@
 package de.rub.nds.praktikum.messages;
 
 /**
- * A serializer class which transfroms an alert object into its byte
+ * A serializer class which transforms an alert object into its byte
  * representation
  */
 public class AlertSerializer extends Serializer<Alert> {

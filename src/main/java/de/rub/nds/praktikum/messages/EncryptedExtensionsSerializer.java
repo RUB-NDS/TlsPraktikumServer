@@ -1,9 +1,7 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.constants.FieldLength;
-
 /**
- * A serializer class which transforms a encrypted extension message object into
+ * A serializer class which transforms an encrypted extension message object into
  * its byte representation
  */
 public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtensions> {

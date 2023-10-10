@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * This class represents a supported signature and hash algorithmextension. The
+ * This class represents a supported signature and hash algorithm extension. The
  * signature and hash algorithm extension extension is used to inform the other
  * party about all supported signature and hash algorithms
  *

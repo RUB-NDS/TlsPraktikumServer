@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * This class represents a SupportedVersions extension. The supported version
  * extension is used in tls 1.3 by the client to transmit all client supported
- * versions and used by the server to perform the acutal version selection. This
+ * versions and used by the server to perform the actual version selection. This
  * is done since some implementations reject client hello messages which promote
  * a higher version that 0x0303. Note that this extension looks slightly for cl
  *

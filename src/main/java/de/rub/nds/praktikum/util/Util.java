@@ -2,7 +2,6 @@ package de.rub.nds.praktikum.util;
 
 /**
  * A collection of Util functions which appear helpful for tls development
- *
  */
 public class Util {
 
@@ -150,8 +149,5 @@ public class Util {
 
     private Util() {
     }
-    
-   public @interface Solution {
-       int skipLines() default 0;
-  }
+
 }

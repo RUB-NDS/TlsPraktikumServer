@@ -1,7 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.exception.ParserException;
-
 /**
  * A parser class for the finished message which transforms a byte[] into a
  * finished message

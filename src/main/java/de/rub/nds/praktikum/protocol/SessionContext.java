@@ -139,7 +139,7 @@ public class SessionContext {
     /**
      * Sets the selected protocol version
      *
-     * @param selectedVersion the protocolversion
+     * @param selectedVersion the protocol version
      */
     public void setSelectedVersion(ProtocolVersion selectedVersion) {
         this.selectedVersion = selectedVersion;
@@ -168,6 +168,13 @@ public class SessionContext {
         } catch (CloneNotSupportedException ex) {
             throw new TlsException("Could not clone digest", ex);
         }
+    }
+
+    /**
+     * Resets transcript digest
+     */
+    public void resetDigest() {
+        transcriptDigest.reset();
     }
 
     /**

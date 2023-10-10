@@ -1,6 +1,5 @@
 package de.rub.nds.praktikum.records;
 
-import de.rub.nds.praktikum.constants.FieldLength;
 import de.rub.nds.praktikum.messages.Parser;
 
 /**

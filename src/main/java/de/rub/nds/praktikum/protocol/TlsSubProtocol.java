@@ -29,7 +29,7 @@ public abstract class TlsSubProtocol {
     }
 
     /**
-     * If the record layer decapuslates a byte stream from the record the
+     * If the record layer decapsulates a byte stream from the record the
      * resulting bytes are passed to this method.
      *
      * @param stream byte[] extracted from the record layer for this protocol

@@ -5,7 +5,7 @@ import de.rub.nds.praktikum.constants.AlertLevel;
 
 /**
  * This class represents a TLS alert message. An alert message consists of only
- * two bytes. The first one indicates the level of alert (eg. fatal or warning),
+ * two bytes. The first one indicates the level of alert (e.g. fatal or warning),
  * while the second bytes gives the alert description
  *
  */

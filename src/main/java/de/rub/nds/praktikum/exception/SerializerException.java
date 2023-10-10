@@ -14,9 +14,9 @@ public class SerializerException extends RuntimeException {
     }
 
     /**
-     * Contructor
+     * Constructor
      *
-     * @param message excpetion message
+     * @param message exception message
      */
     public SerializerException(String message) {
         super(message);

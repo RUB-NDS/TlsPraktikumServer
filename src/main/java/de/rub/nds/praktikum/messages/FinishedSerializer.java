@@ -1,6 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-
 /**
  * A serializer class which transforms a finished message object into its byte
  * representation

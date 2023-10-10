@@ -1,10 +1,7 @@
 package de.rub.nds.praktikum.messages.certificate;
 
-import de.rub.nds.praktikum.constants.FieldLength;
-import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.messages.Serializer;
-import de.rub.nds.praktikum.messages.extensions.Extension;
-import de.rub.nds.praktikum.util.Util;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 

@@ -17,7 +17,7 @@ public class SupportedSignaturesAlgorithmExtensionParserTest {
     public void testParseValid() {
         SupportedSignaturesAlgorithmExtensionParser parser = new SupportedSignaturesAlgorithmExtensionParser(Util.hexStringToByteArray("001E060106020603050105020503040104020403030103020303020102020203"));
         SupportedSignaturesAlgorithmExtension extension = parser.parse();
-        assertEquals("There is exactly 15 enties in the list", 15, extension.getSignatureAlgorithmsList().size());
+        assertEquals("There is exactly 15 entries in the list", 15, extension.getSignatureAlgorithmsList().size());
         assertTrue("The list contains ecdsa sha256", extension.getSignatureAlgorithmsList().contains(SignatureAndHashAlgorithm.ECDSA_SHA256));
     }
 

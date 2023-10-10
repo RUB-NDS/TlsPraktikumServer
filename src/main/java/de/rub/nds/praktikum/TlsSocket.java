@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * A Socket instantion created from the TlsServerSocket
+ * A Socket instantiation created from the TlsServerSocket
  *
  */
 public class TlsSocket extends Socket {
@@ -17,6 +17,7 @@ public class TlsSocket extends Socket {
 
     private final TlsOutputByteStream outputStream;
     private final TlsInputByteStream inputStream;
+    private final TlsProtocol tlsProtocol;
 
     /**
      * Constructor
@@ -28,6 +29,7 @@ public class TlsSocket extends Socket {
      */
     public TlsSocket(Socket socket, TlsProtocol protocol) throws UnknownHostException, IOException {
         super();
+        this.tlsProtocol = protocol;
         this.realSocket = socket;
         outputStream = new TlsOutputByteStream(protocol);
         inputStream = new TlsInputByteStream(protocol);
@@ -50,6 +52,7 @@ public class TlsSocket extends Socket {
 
     @Override
     public synchronized void close() throws IOException {
+        tlsProtocol.beforeClose();
         realSocket.close();
     }
 

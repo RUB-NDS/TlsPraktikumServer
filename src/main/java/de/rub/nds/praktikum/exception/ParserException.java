@@ -15,9 +15,9 @@ public class ParserException extends RuntimeException {
     }
 
     /**
-     * Contructor
+     * Constructor
      *
-     * @param message excpetion message
+     * @param message exception message
      */
     public ParserException(String message) {
         super(message);
