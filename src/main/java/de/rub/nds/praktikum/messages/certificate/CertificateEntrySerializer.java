@@ -2,9 +2,6 @@ package de.rub.nds.praktikum.messages.certificate;
 
 import de.rub.nds.praktikum.messages.Serializer;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 /**
  * A serializer for a certificate entry
  */

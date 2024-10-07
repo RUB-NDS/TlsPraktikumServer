@@ -26,6 +26,8 @@ import java.security.NoSuchProviderException;
 import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import org.bouncycastle.crypto.tls.Certificate;
@@ -65,19 +67,20 @@ public class HandshakeLayerTest {
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
     public void testSendServerHello() {
-        when(context.getSecureRandom()).thenReturn(new NotSecureRandom((byte) 0xBB));
+        //We re-use this test for task 3 and require the serialized ServerHello then. Sadly, the test method has to be void.
+        internalServerHelloTest();
+    }
+    
+    @Test
+    @Category(de.rub.nds.praktikum.Aufgabe2.class)
+    public void testServerHelloNegotiatesCipherSuiteDynamically() {
+        // prevent cases where the code only works when our cipher suite is first in the client's list
+        prepareServerHelloTest(List.of(CipherSuite.TLS_AES_256_GCM_SHA384, CipherSuite.TLS_AES_128_GCM_SHA256));
+        assertEquals("You did not select a CipherSuite or did not negotiate the correct one", CipherSuite.TLS_AES_128_GCM_SHA256, context.getSelectedCiphersuite());
+    }
 
-        List<CipherSuite> suiteList = new LinkedList<>();
-        suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
-        List<KeyShareEntry> keyShareEntryList = new LinkedList<>();
-        keyShareEntryList.add(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), Util.hexStringToByteArray("AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122")));
-        context.setClientCipherSuiteList(suiteList);
-        context.setClientKeyShareEntryList(keyShareEntryList);
-        context.setClientSessionId(Util.hexStringToByteArray("AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011"));
-        handshakeLayer = new HandshakeLayer(context, recordLayer);
-        assertNull(context.getServerRandom());
-        assertNull(context.getSelectedCiphersuite());
-        handshakeLayer.sendServerHello();
+    private byte[] internalServerHelloTest() {
+        prepareServerHelloTest(List.of(CipherSuite.TLS_AES_128_GCM_SHA256));
         byte[] serverHelloBytes = outputStream.toByteArray();
         assertEquals("ServerHello should be 127 Bytes long",127, serverHelloBytes.length);//We only implement a minimal version of the SH with only one supported named group - it should contain exactly 127 bytes (with record header)
         //Since we do not have a SH parser we need to create one manually
@@ -90,7 +93,7 @@ public class HandshakeLayerTest {
         Parser tempParser = new Parser(parsedRecord.getData()) {
             @Override
             public Object parse() {
-                assertEquals("The SH",2, parseByteField()); //type
+                assertEquals("Wrong type set in Server Hello Message",2, parseByteField()); //type
                 assertEquals(0x76, parseIntField(3)); //length
                 Assert.assertArrayEquals(ProtocolVersion.TLS_1_2.getValue(), parseByteArrayField(2)); //version
                 assertArrayEquals("Tests if the Random is 0xBBBB... This should be the case because we use a rigged random number generator in this test."
@@ -108,17 +111,35 @@ public class HandshakeLayerTest {
         assertEquals("Negotiated version did not make it into the Context", ProtocolVersion.TLS_1_3, context.getSelectedVersion()); //This should be true since we only support TLS 1.3
         assertEquals("CipherSuite did not make it into the Context", CipherSuite.TLS_AES_128_GCM_SHA256, context.getSelectedCiphersuite()); //this should be true since we only support this one
         assertArrayEquals("Random did not make it into the Context", Util.hexStringToByteArray("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"), context.getServerRandom());
+        return serverHelloBytes;
+    }
+
+    private void prepareServerHelloTest(List<CipherSuite> clientCipherSuiteList) {
+        when(context.getSecureRandom()).thenReturn(new NotSecureRandom((byte) 0xBB));
+
+        List<KeyShareEntry> keyShareEntryList = new LinkedList<>();
+        keyShareEntryList.add(new KeyShareEntry(NamedGroup.ECDH_X25519.getValue(), Util.hexStringToByteArray("AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122")));
+        context.setClientCipherSuiteList(clientCipherSuiteList);
+        context.setClientKeyShareEntryList(keyShareEntryList);
+        context.setClientSessionId(Util.hexStringToByteArray("AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011AABBCCDDEEFF0011"));
+        handshakeLayer = new HandshakeLayer(context, recordLayer);
+        assertNull(context.getServerRandom());
+        assertNull(context.getSelectedCiphersuite());
+        handshakeLayer.sendServerHello();
     }
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe3.class)
     public void testSendServerHelloTask3() {
-        testSendServerHello();
+        byte[] serverHelloSerialized = internalServerHelloTest();
         //The client pk is AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122
+        byte[] clientPublicKey = Util.hexStringToByteArray("AABBCC00112200AABBCC00112200AABBCC00112200AABBCC0011220000001122");
         //Our private key is BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB since we used the rigged random number generator
         assertArrayEquals("The private key has to be derived from the random number generator from the context", Util.hexStringToByteArray("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"), context.getEphemeralPrivateKey());
         assertArrayEquals("The computed public key accordingly is: 6b0b616d718e53691236d3be3ce6d44f9d28836426d81305d131f488206f8d2b", Util.hexStringToByteArray("6b0b616d718e53691236d3be3ce6d44f9d28836426d81305d131f488206f8d2b"), context.getEphemeralPublicKey());
+        assertTrue("Your ServerHello appears to contain the client's public key instead of your own public key. You probably implemented it like this for the previous task, where we did not compute our own public key yet.", Collections.indexOfSubList(Arrays.asList(serverHelloSerialized), Arrays.asList(clientPublicKey)) == -1);
         assertArrayEquals("The session secret is the product of the server private key and the client public key",Util.hexStringToByteArray("a82118fedf0b79e0d8c079c98b19eae42bee58473359158cfaecf0057b9e2069"), context.getSharedEcdheSecret());
+        assertArrayEquals("The Digest does not equal - did you forget to update it?", Util.hexStringToByteArray("434a0a77b0a59cfa92554014c149ccc75b46dffe43fdd4e15f0b812b28eaab99"), context.getDigest());
         assertArrayEquals("This must be extract from the derivedSecret and the sharedSecret",Util.hexStringToByteArray("f72e2d3fd3d4cf8d0d3047ad318636b360803999a0f30fd6bd039bed4f3d34bf"), context.getHandshakeSecret());
         assertArrayEquals("This Secret must contain the digest from all messages",Util.hexStringToByteArray("a35189b7cd84644fbe9396d044beeb5eb8f4938f110d5479d7b27613db4cc286"), context.getClientHandshakeTrafficSecret());
         assertArrayEquals("This Secret must contain the digest from all messages",Util.hexStringToByteArray("c6703594ee511cad7b13f789bb7a2ca56307b612d491c78410ff0b826a388ba4"), context.getServerHandshakeTrafficSecret());
@@ -126,7 +147,6 @@ public class HandshakeLayerTest {
         assertArrayEquals("This must be expanded from the ClientHandshakeTrafficSecret",Util.hexStringToByteArray("6d8967a2c6ca1c90c1d43cf14a4f398a"), context.getClientWriteKey());
         assertArrayEquals("This must be expanded from the ServerHandshakeTrafficSecret",Util.hexStringToByteArray("8faca40fba158ad028f53586"), context.getServerWriteIv());
         assertArrayEquals("This must be expanded from the ServerHandshakeTrafficSecret",Util.hexStringToByteArray("15fcb979f24d6af56d1bb764f6324d1d"), context.getServerWriteKey());
-        assertArrayEquals("The Digest does not equal - did you forget to update it?", Util.hexStringToByteArray("434a0a77b0a59cfa92554014c149ccc75b46dffe43fdd4e15f0b812b28eaab99"), context.getDigest());
     }
 
     @Test

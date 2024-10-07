@@ -1,8 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 /**
  * A serializer class which transforms a certificate message object into its
  * byte representation

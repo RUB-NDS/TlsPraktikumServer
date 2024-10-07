@@ -78,7 +78,7 @@ public class TlsProtocolTest {
     public void testInitSessionNoClientHello() throws Exception {
         try {
             protocol.stepConnectionState();
-        } catch (Exception e){
+        } catch (Exception e) {
             assertArrayEquals("Messages must not be sent", Util.hexStringToByteArray(""), outputStream.toByteArray());
             throw e;
         }
@@ -131,7 +131,6 @@ public class TlsProtocolTest {
         protocol.stepConnectionState();
         assertEquals("TlsState is invalid", TlsState.RECVD_CH, protocol.getContext().getTlsState());
     }
-
 
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe2.class)
@@ -300,8 +299,8 @@ public class TlsProtocolTest {
         //Make sure to reset the SQN's in the record layer here
         assertEquals("TlsState is invalid", TlsState.CONNECTED, protocol.getContext().getTlsState());
     }
-    
-        /**
+
+    /**
      * Test if PassDataToLayer filters messages to the expected Layer
      */
     @Test
@@ -339,5 +338,5 @@ public class TlsProtocolTest {
         protocol.stepConnectionState();
         assertEquals("TlsState is invalid", TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
         assertArrayEquals("Digest is invalid", expectedTranscript, protocol.getContext().getDigest());
-    }            
+    }
 }

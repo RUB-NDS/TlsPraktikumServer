@@ -1,7 +1,5 @@
 package de.rub.nds.praktikum.messages;
 
-import de.rub.nds.praktikum.exception.ParserException;
-
 /**
  * A parser class for alert messages
  */

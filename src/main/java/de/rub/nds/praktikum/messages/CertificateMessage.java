@@ -2,11 +2,8 @@ package de.rub.nds.praktikum.messages;
 
 import de.rub.nds.praktikum.constants.HandshakeMessageType;
 import de.rub.nds.praktikum.messages.certificate.CertificateEntry;
-
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-
 import org.bouncycastle.crypto.tls.Certificate;
 
 /**
