@@ -2,7 +2,6 @@ package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.records.Record;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -20,10 +19,10 @@ public class ApplicationLayer extends TlsSubProtocol {
     /**
      * Constructor
      *
-     * @param context     The SessionContext for which this application layer should
-     *                    be constructed
+     * @param context The SessionContext for which this application layer should
+     * be constructed
      * @param recordLayer The record layer that should be used by this
-     *                    application layer
+     * application layer
      */
     public ApplicationLayer(SessionContext context, RecordLayer recordLayer) {
         super(ProtocolType.APPLICATION_DATA.getByteValue());
@@ -69,5 +68,4 @@ public class ApplicationLayer extends TlsSubProtocol {
     public byte[] fetchAppData() {
         throw new UnsupportedOperationException("Add code here");
     }
-
 }

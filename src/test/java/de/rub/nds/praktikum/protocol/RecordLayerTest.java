@@ -61,7 +61,7 @@ public class RecordLayerTest {
         recordLayer.activateEncryption();
         recordLayer.resetSequencenumbers();
         recordLayer.encrypt(record);
-        assertArrayEquals("Record encrypt failed", recordEncData,  record.getData());
+        assertArrayEquals("Record encrypt failed", recordEncData, record.getData());
         assertEquals("Record Type is not correct", ProtocolType.APPLICATION_DATA.getByteValue(), record.getType());
         recordLayer.decrypt(record);
         assertArrayEquals("Record decrypt failed", recordPlainData, record.getData());
@@ -92,6 +92,7 @@ public class RecordLayerTest {
         for (int i = 0; i < recordCount; i++) {
             recordLayer.sendData(Util.hexStringToByteArray("123456789F"), ProtocolType.HANDSHAKE);
         }
+        assertArrayEquals("Your RecordLayer appears to modify the ServerWriteIV in the context. This will cause problems later on. Ensure you are working on a copy of the byte array when computing the AAD.", context.getServerWriteIv(), Util.hexStringToByteArray("f7f6884c4981716c2d0d29a4"));
         inputStream = new ByteArrayInputStream(outputStream.toByteArray());
         outputStream = new ByteArrayOutputStream();
         recordLayer = new RecordLayer(outputStream, inputStream, context, 0);
@@ -101,6 +102,7 @@ public class RecordLayerTest {
         for (int i = 0; i < recordCount; i++) {
             assertArrayEquals("Error in recieve record number " + i, Util.hexStringToByteArray("123456789F"), receivedRecords.get(i).getData());
         }
+        assertArrayEquals("Your RecordLayer appears to modify the ClientWriteIV in the context. This will cause problems later on. Ensure you are working on a copy of the byte array when computing the AAD.", context.getClientWriteIv(), Util.hexStringToByteArray("f7f6884c4981716c2d0d29a4"));
     }
 
     /**
@@ -146,7 +148,7 @@ public class RecordLayerTest {
         List<Record> receivedRecords = recordLayer.receiveData();
         assertEquals("The number of records is invalid", 1, receivedRecords.size());
         Record testRecord = receivedRecords.get(0);
-        assertEquals("Type is not from the record",0x33, testRecord.getType());
+        assertEquals("Type is not from the record", 0x33, testRecord.getType());
         assertArrayEquals("Version is not from the record", Util.hexStringToByteArray("FFFF"), testRecord.getVersion());
         assertArrayEquals("Data is not from the record", Util.hexStringToByteArray("CC"), testRecord.getData());
         inputStream = new ByteArrayInputStream(Util.hexStringToByteArray("33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC33FFFF0001CC"));

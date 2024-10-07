@@ -1,22 +1,7 @@
 package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.Signature;
-import java.security.SignatureException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * The handshake layer is responsible for the exchange of handshake messages
@@ -31,10 +16,10 @@ public class HandshakeLayer extends TlsSubProtocol {
     /**
      * Constructor
      *
-     * @param context     The SessionContext for which this handshake layer should
-     *                    be constructed
+     * @param context The SessionContext for which this handshake layer should
+     * be constructed
      * @param recordLayer The record layer that should be used by this handshake
-     *                    layer
+     * layer
      */
     public HandshakeLayer(SessionContext context, RecordLayer recordLayer) {
         super(ProtocolType.HANDSHAKE.getByteValue());
@@ -46,7 +31,7 @@ public class HandshakeLayer extends TlsSubProtocol {
      * Creates a ServerHelloMessage, serializes it sends via the RecordLayer and
      * updates the context accordingly. The message should contain a supported
      * versions extension and a keyshare extension.
-     * <p>
+     *
      * *IMPORTANT* In this course you have to add these extensions in exactly
      * this order or you will not pass the unit tests!!! *IMPORTANT*
      */
@@ -58,7 +43,7 @@ public class HandshakeLayer extends TlsSubProtocol {
      * Creates a HelloRetryRequest, serializes it sends via the RecordLayer and
      * updates the context accordingly. The message should contain a supported
      * versions extension and the keyshare extension.
-     * <p>
+     *
      * *IMPORTANT* In this course you have to add these extensions in exactly
      * this order or you will not pass the unit tests!!! *IMPORTANT*
      */
@@ -79,7 +64,6 @@ public class HandshakeLayer extends TlsSubProtocol {
      * context, serializes it sends via the RecordLayer and updates the context
      * accordingly.
      */
-
     public void sendCertificates() {
         throw new UnsupportedOperationException("Add code here");
     }
@@ -112,12 +96,11 @@ public class HandshakeLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
-
     /**
      * Example private function called from processByteStream. Parse handshakePayload, check if payload is
      * correct, handle ClientHello.
      *
-     * @param stream           a TLS 1.3 handshake message from the client as a byte array
+     * @param stream a TLS 1.3 handshake message from the client as a byte array
      * @param handshakePayload handshakePayload to be parsed
      */
     private void processClientHello(byte[] handshakePayload, byte[] stream) throws IOException {

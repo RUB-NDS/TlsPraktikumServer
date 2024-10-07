@@ -1,16 +1,5 @@
 package de.rub.nds.praktikum.crypto;
 
-import de.rub.nds.praktikum.exception.TlsException;
-import de.rub.nds.praktikum.util.Util;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
 /**
  * HKDF-Function which is used in TLS 1.3 for the key derivation
  */

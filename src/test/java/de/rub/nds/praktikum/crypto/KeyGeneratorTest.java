@@ -2,6 +2,7 @@ package de.rub.nds.praktikum.crypto;
 
 import de.rub.nds.praktikum.protocol.SessionContext;
 import de.rub.nds.praktikum.util.Util;
+import java.util.Arrays;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -24,6 +25,7 @@ public class KeyGeneratorTest {
         KeyGenerator.adjustHandshakeSecrets(context);
         assertArrayEquals("The digest is computed wrongly", Util.hexStringToByteArray("c6c918ad2f4199d5598eaf0116cb7a5c2c14cb54781218888db7030dd50d5e6d"), context.getDigest());
         assertArrayEquals("The HandshakeSecret is computed wrongly", Util.hexStringToByteArray("5b4f965df03c682c46e6ee86c311636615a1d2bbb24345c25205953c879e8d06"), context.getHandshakeSecret());
+        assertFalse("Your code effectively hashed the transcript twice when deriving the handshake traffic secrets. Note that context.getDigest() already gives you the **hashed** transcript while deriveSecret() expects to perform the hashing itself. No, you are not supposed to access the digest in some other way to get the unhashed transcript.", Arrays.equals(Util.hexStringToByteArray("b9803218d188de3ac4b4e8c640fb26dafa77cbae127b9828a91503964e12993e"), context.getClientHandshakeTrafficSecret()));
         assertArrayEquals("The ClientHandshakeTrafficSecret is computed wrongly", Util.hexStringToByteArray("e2e23207bd93fb7fe4fc2e297afeab160e522b5ab75d64a86e75bcac3f3e5103"), context.getClientHandshakeTrafficSecret());
         assertArrayEquals("The ServerHandshakeTrafficSecret is computed wrongly", Util.hexStringToByteArray("3b7a839c239ef2bf0b7305a0e0c4e5a8c6c69330a753b308f5e3a83aa2ef6979"), context.getServerHandshakeTrafficSecret());
         context.updateDigest(Util.hexStringToByteArray("020000560303eefce7f7b37ba1d1632e96677825ddf73988cfc79825df566dc5430b9a045a1200130100002e00330024001d00209d3c940d89690b84d08a60993c144eca684d1081287c834d5311bcf32bb9da1a002b00020304"));
@@ -45,6 +47,7 @@ public class KeyGeneratorTest {
         KeyGenerator.adjustApplicationSecrets(context);
         assertArrayEquals("The digest is computed wrongly", Util.hexStringToByteArray("b2ed992186a5cb19f6668aade821f502c1d00970dfd0e35128d51bac4649916c"), context.getDigest());
         assertArrayEquals("The MasterSecret is computed wrongly", Util.hexStringToByteArray("ce6fc3946457414160afc7f1ff8138c72c04be86d8afd96439643edd208ed0fa"), context.getMasterSecret());
+        assertFalse("Your code effectively hashed the transcript twice when deriving the application traffic secrets. Note that context.getDigest() already gives you the **hashed** transcript while deriveSecret() expects to perform the hashing itself. No, you are not supposed to access the digest in some other way to get the unhashed transcript.", Arrays.equals(Util.hexStringToByteArray("65b2517e7f57d7c6cd4c11e1fed24a7c45dd8a5a3eaa9782ef193cdb0dab991d"), context.getClientApplicationTrafficSecret()));
         assertArrayEquals("The ClientApplicationTrafficSecret is computed wrongly", Util.hexStringToByteArray("7fa5865bda5bb6df40c17196774f84479790017f03de96708b7e3baf65116aef"), context.getClientApplicationTrafficSecret());
         assertArrayEquals("The ServerApplicationTrafficSecret is computed wrongly", Util.hexStringToByteArray("bb6e5bb47d531e88d9be3f681780e16dd7f05b86cebd58d93e5f72fb5948a018"), context.getServerApplicationTrafficSecret());
         KeyGenerator.adjustApplicationKeys(context);

@@ -12,7 +12,7 @@ public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtension
      * Constructor
      *
      * @param encryptedExtensions the encrypted extensions message that should
-     *                            be serialized
+     * be serialized
      */
     public EncryptedExtensionsSerializer(EncryptedExtensions encryptedExtensions) {
         this.encryptedExtensions = encryptedExtensions;
@@ -22,5 +22,5 @@ public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtension
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
-
+    
 }
