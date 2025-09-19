@@ -1,8 +1,10 @@
 package de.rub.nds.praktikum.messages;
 
+
 /**
  * A serializer class which transforms a certificate verify message object into
  * its byte representation
+ *
  */
 public class CertificateVerifySerializer extends Serializer<CertificateVerify> {
 
@@ -21,5 +23,6 @@ public class CertificateVerifySerializer extends Serializer<CertificateVerify> {
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }

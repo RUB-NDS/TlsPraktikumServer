@@ -33,6 +33,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -338,5 +339,29 @@ public class TlsProtocolTest {
         protocol.stepConnectionState();
         assertEquals("TlsState is invalid", TlsState.RETRY_HELLO, protocol.getContext().getTlsState());
         assertArrayEquals("Digest is invalid", expectedTranscript, protocol.getContext().getDigest());
+        protocol.stepConnectionState();
+        assertFalse("The digest remained unaltered after preparing the HRR. Are you including the HRR itself in the transcript?", Arrays.equals(protocol.getContext().getDigest(), expectedTranscript));
+    }
+
+    @Test
+    @Category(de.rub.nds.praktikum.Aufgabe4.class)
+    public void testEncryptedExtensionsWriteSQN() throws Exception {
+        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Util.hexStringToByteArray("160301013c010001380303afe00859b6a927b382420cb225e5d23097f14e09c801c43eadce55d9d34d6552200e94608a60749bf7d2aa16be7b64db938ab697ee7c5ec6ddc8ae5de2c89a5ed0003e130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff010000b10000000e000c0000096c6f63616c686f7374000b000403000102000a00160014001d0017001e0019001801000101010201030104002300000016000000170000000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602002b0009080304030303020301002d00020101003300260024001d0020a87d9ff9e5c5ea38f3f11ce3663fe80023f6977bc44b5a8eb561161b5f3eaa22"));
+        when(socket.getInputStream()).thenReturn(byteArrayInputStream);
+        protocol = new TlsProtocol(socket, Certificate.EMPTY_CHAIN, pair.getPrivate(), 10);
+        protocol.getContext().setTlsState(TlsState.START);
+
+        // Process ClientHello
+        protocol.stepConnectionState();
+        assertEquals("TlsState should be RECVD_CH", TlsState.RECVD_CH, protocol.getContext().getTlsState());
+
+        // Send ServerHello, CCS, activate encryption, reset sequence numbers and transition to NEGOTIATED
+        protocol.stepConnectionState();
+        assertEquals("TlsState should be NEGOTIATED", TlsState.NEGOTIATED, protocol.getContext().getTlsState());
+        assertEquals("When changing to new secrets, the write SQN must be reset. EncryptedExtensions should be sent under SQN 0.", 0L, protocol.getRecordLayer().getWriteSequenceNumber());
+        protocol.stepConnectionState();
+        assertEquals("TlsState should be WAIT_FINISHED", TlsState.WAIT_FINISHED, protocol.getContext().getTlsState());
+        assertEquals("Write sequence number should be 4 after sending all handshake messages", 4L, protocol.getRecordLayer().getWriteSequenceNumber());
+        assertEquals("Read sequence number should be 0 when awaiting the first encrypted client message", 0L, protocol.getRecordLayer().getReadSequenceNumber());
     }
 }

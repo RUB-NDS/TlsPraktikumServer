@@ -1,7 +1,9 @@
 package de.rub.nds.praktikum.messages;
 
+
 /**
  * A parser class which parses a provided byte[] into a client hello object
+ *
  */
 public class ClientHelloParser extends Parser<ClientHello> {
 
@@ -25,5 +27,6 @@ public class ClientHelloParser extends Parser<ClientHello> {
     public ClientHello parse() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }

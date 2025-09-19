@@ -2,6 +2,7 @@ package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.records.Record;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,6 +72,7 @@ public class RecordLayer {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Tries to receive records from the input stream. If no data is available
      * an empty record list is returned.
@@ -84,9 +86,11 @@ public class RecordLayer {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     private List<byte[]> chunkData(byte[] dataToChunk) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     private byte[] fetchData() throws IOException {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -125,6 +129,12 @@ public class RecordLayer {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
+
+
+
+
+
     /**
      * Decrypts a record. Updates the type and sets the data.
      *
@@ -134,10 +144,21 @@ public class RecordLayer {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      *
      */
     public void resetSequencenumbers() {
         throw new UnsupportedOperationException("Add code here");
     }
+
+
+    public long getWriteSequenceNumber() {
+        return writeSequencenumber;
+    }
+
+    public long getReadSequenceNumber() {
+        return readSequencenumber;
+    }
+
 }

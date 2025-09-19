@@ -1,12 +1,14 @@
 package de.rub.nds.praktikum.protocol;
 
-import de.rub.nds.praktikum.constants.ProtocolType;
-import de.rub.nds.praktikum.records.Record;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import de.rub.nds.praktikum.constants.ProtocolType;
+import de.rub.nds.praktikum.records.Record;
+
 /**
  * The application layer is responsible for the exchange of application data
+ *
  */
 public class ApplicationLayer extends TlsSubProtocol {
 
@@ -41,6 +43,7 @@ public class ApplicationLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * If the Handshake is successfully finished and we receive actual app data
      * return its content.
@@ -52,6 +55,7 @@ public class ApplicationLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Passes data to the appDataBuffer such that the application can fetch it.
      *
@@ -62,10 +66,14 @@ public class ApplicationLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
+     *
      * @return
      */
     public byte[] fetchAppData() {
         throw new UnsupportedOperationException("Add code here");
     }
+
+
 }

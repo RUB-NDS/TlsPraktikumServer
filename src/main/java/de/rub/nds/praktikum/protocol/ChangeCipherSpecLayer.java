@@ -6,6 +6,7 @@ import java.io.IOException;
 /**
  * The ChangeCipherSpecLayer is responsible for the transmission of dummy ccs
  * messages.
+ *
  */
 public class ChangeCipherSpecLayer extends TlsSubProtocol {
 
@@ -36,6 +37,7 @@ public class ChangeCipherSpecLayer extends TlsSubProtocol {
     public void sendCCS() throws IOException {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     /**
      * Parses the received ccs messages. We do nothing here and simply ignore

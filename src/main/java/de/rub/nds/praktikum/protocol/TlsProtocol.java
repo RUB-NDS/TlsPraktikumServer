@@ -6,7 +6,6 @@ import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.constants.TlsState;
 import de.rub.nds.praktikum.exception.TlsException;
 import de.rub.nds.praktikum.records.Record;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -77,6 +76,7 @@ public class TlsProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Takes a list of records and groups them by their type. Each group is then
      * passed to the passSubGroupToLayer() function
@@ -87,6 +87,7 @@ public class TlsProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * A list consecutive records which all have the same type is passed to the
      * appropriate sub protocol
@@ -96,6 +97,7 @@ public class TlsProtocol {
     private void passSubGroupToLayer(List<Record> recordList) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     /**
      * Sends the provided data over the applicationLayer if there is a connection
@@ -144,6 +146,7 @@ public class TlsProtocol {
     public void beforeClose() throws IOException {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     /**
      * @return the session context of the protocol

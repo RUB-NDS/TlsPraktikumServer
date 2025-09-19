@@ -5,6 +5,7 @@ import de.rub.nds.praktikum.messages.Parser;
 /**
  * A parser class which parses a provided byte[] into a supported versions
  * extension object
+ *
  */
 public class SupportedVersionsExtensionParser extends Parser<SupportedVersionsExtension> {
 
@@ -21,5 +22,6 @@ public class SupportedVersionsExtensionParser extends Parser<SupportedVersionsEx
     public SupportedVersionsExtension parse() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }
