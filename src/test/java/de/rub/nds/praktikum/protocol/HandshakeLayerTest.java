@@ -23,7 +23,6 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
 import java.util.Arrays;
@@ -241,7 +240,8 @@ public class HandshakeLayerTest {
     @Test
     @Category(de.rub.nds.praktikum.Aufgabe4.class)
     public void testSendCertificateVerify() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
-        when(context.getSecureRandom()).thenReturn(new NotSecureRandom((byte) 0x01));
+        NotSecureRandom reallyNotSecureRandom = new NotSecureRandom((byte) 0x01);
+        when(context.getSecureRandom()).thenReturn(reallyNotSecureRandom);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         ECGenParameterSpec ecGenSpec = new ECGenParameterSpec("secp256r1");
         KeyPair pair = null;
@@ -250,7 +250,6 @@ public class HandshakeLayerTest {
         pair = keyPairGenerator.generateKeyPair();
         context.setCertificatePrivateKey(pair.getPrivate());
         context.setSelectedSignatureAndHashAlgorithm(SignatureAndHashAlgorithm.ECDSA_SHA256);
-        final PublicKey pubKey = pair.getPublic();
         handshakeLayer.sendCertificateVerify();
         byte[] certificateVerifyBytes = outputStream.toByteArray();
         RecordParser parser = new RecordParser(certificateVerifyBytes);
@@ -267,6 +266,7 @@ public class HandshakeLayerTest {
                 byte[] signature = parseByteArrayField(signatureLength);
 
                 assertEquals("The the message len or the signature len is invalid",signatureLength, hsLength - 4);
+                assertTrue("Our dummy SecureRandom hast not been called. This indicates that you are not using the context's SecureRandom object when generating the ECDSA signature. To achieve deterministic signatures (that pass these tests) you must use the given SecureRandom instance.", reallyNotSecureRandom.getCallsToNextByte() > 0);
                 assertArrayEquals("Signature is not correct", Util.hexStringToByteArray("304402206ff03b949241ce1dadd43519e6960e0a85b41a69a05c328103aa2bce1594ca1602207104e010131c71c9c867de6b504880b6209a0ab3e1df0eef9f8c1b5747a26211"), signature);
                 return null;
             }
@@ -300,6 +300,7 @@ public class HandshakeLayerTest {
                 return null;
             }
         };
+        assertNull("This test does not set a ClientWriteKey yet your context contains a key value. Note that the server must not set the application write key for the client side yet. Did you set the client keys too early?", context.getClientWriteKey());
         assertNotNull("Client finished key must be set", context.getClientFinishedKey());
         assertNotNull("Server finished key must be set", context.getServerFinishedKey());
         assertArrayEquals("The Digest does not equal - did you forget to update it?", Util.hexStringToByteArray("9ab9f32be1080f7f1ba315137e4f38c25e216dc33185b386d92c234a8c9a441b"), context.getDigest());

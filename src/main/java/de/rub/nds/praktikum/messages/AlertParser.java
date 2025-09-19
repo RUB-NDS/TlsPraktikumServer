@@ -1,7 +1,9 @@
 package de.rub.nds.praktikum.messages;
 
+
 /**
  * A parser class for alert messages
+ *
  */
 public class AlertParser extends Parser<Alert> {
 
@@ -18,5 +20,6 @@ public class AlertParser extends Parser<Alert> {
     public Alert parse() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }

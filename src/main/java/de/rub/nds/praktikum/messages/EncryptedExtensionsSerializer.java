@@ -1,8 +1,10 @@
 package de.rub.nds.praktikum.messages;
 
+
 /**
  * A serializer class which transforms an encrypted extension message object into
  * its byte representation
+ *
  */
 public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtensions> {
 
@@ -22,5 +24,6 @@ public class EncryptedExtensionsSerializer extends Serializer<EncryptedExtension
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
-    
+
+
 }

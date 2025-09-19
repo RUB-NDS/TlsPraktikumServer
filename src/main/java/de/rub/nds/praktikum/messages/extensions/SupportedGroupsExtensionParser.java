@@ -20,5 +20,6 @@ public class SupportedGroupsExtensionParser extends Parser<SupportedGroupsExtens
     public SupportedGroupsExtension parse() {
         throw new UnsupportedOperationException("Add code here");
     }
-    
+
+
 }

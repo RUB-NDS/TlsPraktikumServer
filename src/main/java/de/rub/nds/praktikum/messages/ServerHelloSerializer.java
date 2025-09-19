@@ -1,8 +1,10 @@
 package de.rub.nds.praktikum.messages;
 
+
 /**
  * A serializer class which transforms a server hello message object into its
  * byte representation
+ *
  */
 public class ServerHelloSerializer extends Serializer<ServerHello> {
 
@@ -21,5 +23,6 @@ public class ServerHelloSerializer extends Serializer<ServerHello> {
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
-    
+
+
 }

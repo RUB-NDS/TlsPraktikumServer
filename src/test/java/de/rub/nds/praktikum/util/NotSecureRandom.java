@@ -8,6 +8,7 @@ import java.security.SecureRandom;
 public class NotSecureRandom extends SecureRandom {
 
     private final byte b;
+    private int nextByteCalls = 0;
 
     /**
      *
@@ -26,6 +27,11 @@ public class NotSecureRandom extends SecureRandom {
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = b;
         }
+        nextByteCalls++;
+    }
+
+    public int getCallsToNextByte() {
+        return nextByteCalls;
     }
 
 }

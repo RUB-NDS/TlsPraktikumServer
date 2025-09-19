@@ -5,6 +5,7 @@ import de.rub.nds.praktikum.messages.Parser;
 /**
  * A parser class which parses a provided byte[] into a key share extension
  * object
+ *
  */
 public class KeyShareExtensionParser extends Parser<KeyShareExtension> {
 
@@ -21,4 +22,5 @@ public class KeyShareExtensionParser extends Parser<KeyShareExtension> {
     public KeyShareExtension parse() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 }

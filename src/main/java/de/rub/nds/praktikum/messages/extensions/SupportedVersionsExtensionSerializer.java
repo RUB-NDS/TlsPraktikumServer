@@ -5,6 +5,7 @@ import de.rub.nds.praktikum.messages.Serializer;
 /**
  * A serializer class which transforms a supported versions into its byte
  * representation
+ *
  */
 public class SupportedVersionsExtensionSerializer extends Serializer<SupportedVersionsExtension> {
 
@@ -23,5 +24,6 @@ public class SupportedVersionsExtensionSerializer extends Serializer<SupportedVe
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }

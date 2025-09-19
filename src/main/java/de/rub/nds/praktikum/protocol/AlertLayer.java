@@ -8,6 +8,7 @@ import java.io.IOException;
 /**
  * The alert layer is responsible for the exchange of error messages between the
  * client and the server.
+ *
  */
 public class AlertLayer extends TlsSubProtocol {
 
@@ -42,6 +43,7 @@ public class AlertLayer extends TlsSubProtocol {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Parses the received alert messages. If a fatal alert is received the
      * TlsState is set to ERROR in the context.
@@ -52,4 +54,5 @@ public class AlertLayer extends TlsSubProtocol {
     public void processByteStream(byte[] stream) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 }

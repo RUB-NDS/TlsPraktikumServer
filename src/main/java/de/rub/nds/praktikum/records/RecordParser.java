@@ -5,6 +5,7 @@ import de.rub.nds.praktikum.messages.Parser;
 /**
  * A parser class for tls records. This transforms a byte array into a record
  * object
+ *
  */
 public class RecordParser extends Parser<Record> {
 
@@ -21,4 +22,5 @@ public class RecordParser extends Parser<Record> {
     public Record parse() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 }

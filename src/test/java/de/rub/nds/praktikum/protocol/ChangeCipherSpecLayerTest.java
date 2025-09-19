@@ -35,6 +35,6 @@ public class ChangeCipherSpecLayerTest {
         byte[] digest = context.getDigest();
         layer.sendCCS();
         assertArrayEquals("The CSS message contains only one Byte with value 1",Util.hexStringToByteArray("140303000101"), stream.toByteArray());
-        assertArrayEquals("The digest is not affected by CCS messages", digest, context.getDigest());
+        assertArrayEquals("The digest must not be affected by the CCS", digest, context.getDigest());
     }
 }

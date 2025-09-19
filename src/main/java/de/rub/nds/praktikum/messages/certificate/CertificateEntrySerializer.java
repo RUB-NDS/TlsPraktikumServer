@@ -23,4 +23,5 @@ public class CertificateEntrySerializer extends Serializer<CertificateEntry> {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
 }

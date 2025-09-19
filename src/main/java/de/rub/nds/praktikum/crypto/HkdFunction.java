@@ -1,9 +1,15 @@
 package de.rub.nds.praktikum.crypto;
 
+
 /**
  * HKDF-Function which is used in TLS 1.3 for the key derivation
  */
 public class HkdFunction {
+
+    /**
+     * TLS 1.3 label
+     */
+    public static final String LABEL_PREFIX = "tls13";
 
     /**
      * Key label
@@ -56,6 +62,7 @@ public class HkdFunction {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Computes HKDF-Expand output as defined in RFC 5869
      *
@@ -68,12 +75,14 @@ public class HkdFunction {
         throw new UnsupportedOperationException("Add code here");
     }
 
+
     /**
      * Computes the HKDF-Label as defined in TLS 1.3
      */
     private static byte[] labelEncoder(byte[] hashValue, String labelIn, int outLen) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     /**
      * Computes Derive-Secret output as defined in TLS 1.3
@@ -86,6 +95,7 @@ public class HkdFunction {
     public static byte[] deriveSecret(byte[] prk, String labelIn, byte[] toHash) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     /**
      * Computes HKDF-Expand-Label output as defined in TLS 1.3. This should use
@@ -100,6 +110,7 @@ public class HkdFunction {
     public static byte[] expandLabel(byte[] prk, String labelIn, byte[] hashValue, int outLen) {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
     private HkdFunction() {
     }

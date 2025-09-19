@@ -150,4 +150,13 @@ public class Util {
     private Util() {
     }
 
+    public @interface Solution {
+    }
+
+    public @interface SolutionWithHint {
+    }
+
+    public @interface SolutionToBeRemoved {
+
+    }
 }

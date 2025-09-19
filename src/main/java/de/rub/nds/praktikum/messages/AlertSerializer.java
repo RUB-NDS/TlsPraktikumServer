@@ -3,6 +3,7 @@ package de.rub.nds.praktikum.messages;
 /**
  * A serializer class which transforms an alert object into its byte
  * representation
+ *
  */
 public class AlertSerializer extends Serializer<Alert> {
 
@@ -21,5 +22,6 @@ public class AlertSerializer extends Serializer<Alert> {
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }

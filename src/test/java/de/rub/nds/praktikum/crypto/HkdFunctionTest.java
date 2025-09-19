@@ -1,7 +1,6 @@
 package de.rub.nds.praktikum.crypto;
 
 import de.rub.nds.praktikum.util.Util;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import static org.junit.Assert.*;
 import org.junit.Test;

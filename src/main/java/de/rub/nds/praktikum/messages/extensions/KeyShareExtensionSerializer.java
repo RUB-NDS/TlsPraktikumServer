@@ -5,6 +5,7 @@ import de.rub.nds.praktikum.messages.Serializer;
 /**
  * A serializer class which transforms a KeyShareExtension into its byte
  * representation
+ *
  */
 public class KeyShareExtensionSerializer extends Serializer<KeyShareExtension> {
 
@@ -23,5 +24,6 @@ public class KeyShareExtensionSerializer extends Serializer<KeyShareExtension> {
     protected void serializeBytes() {
         throw new UnsupportedOperationException("Add code here");
     }
+
 
 }
